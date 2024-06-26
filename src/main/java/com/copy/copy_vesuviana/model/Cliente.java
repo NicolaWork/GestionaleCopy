@@ -20,6 +20,33 @@ public class Cliente {
 
     @Column(name="indirizzo")
     private String indirizzo;
+    
+    public Cliente(){}
 
+    public Cliente(String ragione_sociale, String indirizzo) {
+        this.ragione_sociale = ragione_sociale;
+        this.indirizzo = indirizzo;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getRagione_sociale() {
+        return ragione_sociale;
+    }
+
+    public void setRagione_sociale(String ragione_sociale) {
+        this.ragione_sociale = ragione_sociale;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    
 }

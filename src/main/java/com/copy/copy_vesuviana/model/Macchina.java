@@ -25,5 +25,41 @@ public class Macchina {
 
     @Column(name= "data_acquisto")
     private Date dataAcquisto;
+    
+    public Macchina(){}
+
+    public Macchina(String matricola, String modello, Date dataAcquisto) {
+        this.matricola = matricola;
+        this.modello = modello;
+        this.dataAcquisto = dataAcquisto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getMatricola() {
+        return matricola;
+    }
+
+    public void setMatricola(String matricola) {
+        this.matricola = matricola;
+    }
+
+    public String getModello() {
+        return modello;
+    }
+
+    public void setModello(String modello) {
+        this.modello = modello;
+    }
+
+    public Date getDataAcquisto() {
+        return dataAcquisto;
+    }
+
+    public void setDataAcquisto(Date dataAcquisto) {
+        this.dataAcquisto = dataAcquisto;
+    }
 
 }
