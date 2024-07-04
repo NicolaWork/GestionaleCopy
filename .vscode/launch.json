@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CopyVesuvianaApplication<copy_vesuviana>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.copy.copy_vesuviana.CopyVesuvianaApplication",
+            "projectName": "copy_vesuviana",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

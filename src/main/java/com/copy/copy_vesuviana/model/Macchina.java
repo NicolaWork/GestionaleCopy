@@ -1,6 +1,6 @@
 package com.copy.copy_vesuviana.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +27,7 @@ public class Macchina {
     private String modello;
 
     @Column(name= "data_acquisto")
-    private Date dataAcquisto;
+    private LocalDate dataAcquisto;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -44,7 +44,7 @@ public class Macchina {
     
     public Macchina(){}
 
-    public Macchina(String matricola, String modello, Date dataAcquisto) {
+    public Macchina(String matricola, String modello, LocalDate dataAcquisto) {
         this.matricola = matricola;
         this.modello = modello;
         this.dataAcquisto = dataAcquisto;
@@ -70,11 +70,11 @@ public class Macchina {
         this.modello = modello;
     }
 
-    public Date getDataAcquisto() {
+    public LocalDate getDataAcquisto() {
         return dataAcquisto;
     }
 
-    public void setDataAcquisto(Date dataAcquisto) {
+    public void setDataAcquisto(LocalDate dataAcquisto) {
         this.dataAcquisto = dataAcquisto;
     }
 

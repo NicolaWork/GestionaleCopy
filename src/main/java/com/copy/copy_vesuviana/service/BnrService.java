@@ -8,11 +8,11 @@ import com.copy.copy_vesuviana.model.Bnr;
 import com.copy.copy_vesuviana.repository.BnrRepository;
 
 @Service
-public class BrnService {
+public class BnrService {
 
     private BnrRepository bnrRepository;
 
-    public BrnService(BnrRepository bnrRepository){
+    public BnrService(BnrRepository bnrRepository){
         this.bnrRepository = bnrRepository;
     }
 

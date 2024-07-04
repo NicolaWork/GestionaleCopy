@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuovo Riciclatore</title>
+</head>
+<body>
+    <h1>Nuovo Riciclatore</h1>
+    <form th:action="@{/macchina/form}" th:object="${macchina}" method="post">
+        <div>
+            <label for="matricola">matricola:</label>
+            <input type="text" id="matricola" th:field="*{matricola}" />
+        </div>
+        <div>
+            <label for="modello">modello:</label>
+            <input type="text" id="modello" th:field="*{modello}" />
+        </div>
+        <div>
+            <label for="dataAcquisto">dataAcquisto:</label>
+            <input type="date" id="dataAcquisto" th:field="*{dataAcquisto}" required>
+        </div>
+        <div>
+            <button type="submit">Salva</button>
+        </div>
+    </form>
+</body>
+</html>
