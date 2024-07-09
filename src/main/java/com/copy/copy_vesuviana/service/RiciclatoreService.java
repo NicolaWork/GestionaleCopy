@@ -17,6 +17,9 @@ public class RiciclatoreService {
     }
 
     public void saveRiciclatore(Riciclatore riciclatore){
+        if (riciclatore.isAssistenza()==null) {
+            riciclatore.setAssistenza(false);            
+        }
         riciclatoreRepository.save(riciclatore);
     }
 
@@ -30,6 +33,10 @@ public class RiciclatoreService {
 
     public void delRiciclatore(Long id){
         riciclatoreRepository.deleteById(id);
+    }
+
+    public List<Riciclatore> getBnrByMacchinaNull(){
+        return riciclatoreRepository.findByMacchinaIdIsNull();
     }
 
 }

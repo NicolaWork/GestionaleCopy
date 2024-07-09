@@ -17,6 +17,9 @@ public class BnrService {
     }
 
     public void saveBnr (Bnr bnr){
+        if (bnr.isAssistenza()==null) {
+            bnr.setAssistenza(false);            
+        }
         bnrRepository.save(bnr);
     }
 
@@ -32,5 +35,7 @@ public class BnrService {
         bnrRepository.deleteById(id);
     }
     
-
+    public List<Bnr> getBnrByMacchinaNull(){
+        return bnrRepository.findByMacchinaIdIsNull();
+    }
 }

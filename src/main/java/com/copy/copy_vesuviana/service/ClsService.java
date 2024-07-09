@@ -17,6 +17,9 @@ public class ClsService {
     }
 
     public void saveCls(Cls cls){
+        if (cls.isAssistenza()==null) {
+            cls.setAssistenza(false);            
+        }
         clsRepository.save(cls);
     }
 
@@ -30,6 +33,10 @@ public class ClsService {
 
     public void delCls(Long id){
         clsRepository.deleteById(id);
+    }
+
+    public List<Cls> getClsByMacchinaNull(){
+        return clsRepository.findByMacchinaIdIsNull();
     }
 
 }

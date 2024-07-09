@@ -1,5 +1,7 @@
 package com.copy.copy_vesuviana.controller;
 
+
+
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -9,23 +11,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.copy.copy_vesuviana.model.Cliente;
 import com.copy.copy_vesuviana.service.ClienteService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 
 @Controller
 @RequestMapping("/cliente")
 public class ClienteController {
-
+    
     private ClienteService clienteService;
 
     public ClienteController(ClienteService clientesService){
         this.clienteService=clientesService;
     }
-
 
 
     @GetMapping("/new")
@@ -35,22 +37,29 @@ public class ClienteController {
     }
 
     @PostMapping("/form")
-    public String postMethodName(@ModelAttribute Cliente cliente) {
-        clienteService.saveCliente(cliente);        
+    public String postMethodName(@ModelAttribute("cliente") Cliente cliente) {
+        clienteService.saveCliente(cliente);                
         return "redirect:/home";
     }
     
 
-    @PostMapping("/findall")
-    @ResponseBody
-    public List<Cliente> allCliente(){
-        return clienteService.getAllCliente();
+    @GetMapping("/listaclienti")
+    public String allCliente(Model model){
+        
+        List<Cliente> listaclienti = clienteService.getAllCliente();
+        model.addAttribute("listaclienti", listaclienti);
+ 
+        return "listaclienti";
     }
 
-    @PostMapping("/find/{id}")
-    @ResponseBody
-    public Cliente findCliente(@PathVariable(name="id")Long id){
-        return clienteService.getClienteById(id);
+    @GetMapping("/find/{id}")
+    public String findCliente(@PathVariable(name="id")Long id, Model model, HttpSession session){
+
+        Cliente cliente = clienteService.getClienteById(id);
+        session.setAttribute("clientefm", cliente);
+        model.addAttribute("cliente", cliente);        
+
+        return "schedacliente";
     }
 
 

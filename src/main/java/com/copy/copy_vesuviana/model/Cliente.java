@@ -30,15 +30,21 @@ public class Cliente {
     
     public Cliente(){}
 
-    public Cliente(String ragione_sociale, String indirizzo) {
+    public Cliente(Long id, String ragione_sociale, String indirizzo, Set<Macchina> macchina) {
+        this.id = id;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo = indirizzo;
+        this.macchina = macchina;
     }
 
     public Long getId() {
         return id;
     }
     
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getRagione_sociale() {
         return ragione_sociale;
     }
@@ -61,6 +67,11 @@ public class Cliente {
 
     public void setMacchina(Set<Macchina> macchina) {
         this.macchina = macchina;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente [id=" + id + ", ragione_sociale=" + ragione_sociale + ", indirizzo=" + indirizzo + "]";
     }
     
     

@@ -32,4 +32,12 @@ public class MacchinaService {
         macchinaRepository.deleteById(id);
     }
 
+    public List<Macchina> getMacchinaByClienteNull(){
+        return macchinaRepository.findByClienteIdIsNull();
+    }
+
+    public Macchina getMacchinaByClienteId(Long id) {
+        return macchinaRepository.getMacchinaByClienteId(id);
+    }
+
 }

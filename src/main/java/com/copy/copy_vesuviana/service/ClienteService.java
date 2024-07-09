@@ -17,6 +17,14 @@ public class ClienteService {
     }
 
     public void saveCliente(Cliente cliente){
+        System.out.println("-------------------save----------------");
+        clienteRepository.save(cliente);
+    }
+
+    public void updateCliente(Cliente cliente){
+        System.out.println("-------------------update----------------");
+        cliente.setIndirizzo(cliente.getIndirizzo());
+        cliente.setRagione_sociale(cliente.getRagione_sociale());
         clienteRepository.save(cliente);
     }
 

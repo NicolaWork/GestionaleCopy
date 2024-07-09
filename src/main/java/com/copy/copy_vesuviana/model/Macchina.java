@@ -44,11 +44,20 @@ public class Macchina {
     
     public Macchina(){}
 
-    public Macchina(String matricola, String modello, LocalDate dataAcquisto) {
+  
+
+    public Macchina(Long id, String matricola, String modello, LocalDate dataAcquisto, Cliente cliente, Bnr bnr, Cls cls, Riciclatore riciclatore) {
+        this.id = id;
         this.matricola = matricola;
         this.modello = modello;
         this.dataAcquisto = dataAcquisto;
+        this.cliente = cliente;
+        this.bnr = bnr;
+        this.cls = cls;
+        this.riciclatore = riciclatore;
     }
+
+
 
     public Long getId() {
         return id;
@@ -110,4 +119,17 @@ public class Macchina {
         this.riciclatore = riciclatore;
     }
 
+    @Override
+    public String toString() {
+        return  "Macchina [ matricola=" + matricola + ", modello=" + modello + " dataAcquisto=" + dataAcquisto + 
+                "\n " + bnr + 
+                "\n " + cls + 
+                "\n " + riciclatore;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
 }

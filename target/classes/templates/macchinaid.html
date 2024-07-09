@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Modifica Macchina</title>
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group span {
+            width: 150px; /* Dimensione fissa per gli span */
+            display: inline-block; /* Mostra gli span come blocchi inline */
+            text-align: left; /* Allinea il testo a sinistra */
+            margin-right: 15px; /* Spazio tra lo span e il select */
+        }
+        .form-group select {
+            display: inline-block; /* Mostra i select come blocchi inline */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h3 class="text-center mb-4">Modifica Macchina</h3>
+                <form th:action="@{/macchina/aggiorna}" th:object="${macchina}" method="post">
+
+                    <!-- Campo nascosto per macchina -->
+                    <input type="hidden" id="macchinaId" name="macchinaId" th:value="*{id}">
+                    <input type="hidden" id="macchinaModello" name="macchinaModello" th:value="*{modello}">
+                    <input type="hidden" id="macchinaMatricola" name="macchinaMatricola" th:value="*{matricola}">
+                    <input type="hidden" id="macchinaDataAcquisto" name="macchinaDataAcquisto" th:value="*{dataAcquisto}">
+                    
+                    <div class="form-group">
+                        <span>MACCHINA: </span>
+                        <select id="macchina" th:field="*{id}" class="form-select form-select-lg" aria-label="Seleziona una macchina">
+                            <option th:value="*{id}" th:text="*{matricola}"></option>
+                            <th:block th:each="macchina : ${listamacchine}">
+                                <option th:value="${macchina.id}" th:text="${macchina.matricola}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <span>CLS: </span>
+                        <select id="cls" th:field="*{cls.id}" class="form-select form-select-lg" aria-label="Seleziona un CLS">
+                            <option th:value="*{cls.id}" th:text="*{cls.matricola}"></option>
+                            <th:block th:each="cls : ${listacls}">
+                                <option th:value="${cls.id}" th:text="${cls.matricola}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <span>BNR: </span>
+                        <select id="bnr" th:field="*{bnr.id}" class="form-select form-select-lg" aria-label="Seleziona un BNR">
+                            <option th:value="*{bnr.id}" th:text="*{bnr.matricola}"></option>
+                            <th:block th:each="bnr : ${listabnr}">
+                                <option th:value="${bnr.id}" th:text="${bnr.matricola}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Riciclatore: </span>
+                        <select id="riciclatore" th:field="*{riciclatore.id}" class="form-select form-select-lg" aria-label="Seleziona un Riciclatore">
+                            <option th:value="*{riciclatore.id}" th:text="*{riciclatore.matricola}"></option>
+                            <th:block th:each="riciclatore : ${listariciclatore}">
+                                <option th:value="${riciclatore.id}" th:text="${riciclatore.matricola}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-primary">Salva</button>
+                        <a th:href="@{/home}" class="btn btn-outline-secondary" role="button">Home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

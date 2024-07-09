@@ -15,7 +15,7 @@ public class CopyVesuvianaApplication {
 
     @Controller
 	public class HomeController {
-    	@GetMapping("/home")
+    	@GetMapping({"/","/home"})
     	public String home() {
         return "home";  // Questo cercherà il file home.html in src/main/resources/templates
     	}
