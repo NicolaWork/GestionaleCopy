@@ -137,7 +137,6 @@ public class MacchinaController {
         Boolean cambioMacchina = false;
         
         if (macchinafm.getId() != macchinaId){
-            Macchina m = macchinaService.getMacchinaById(macchinaId);
             macchinafm.setMatricola(macchinafm.getMatricola());
             macchinafm.setModello(macchinafm.getModello());
             macchinafm.setDataAcquisto(macchinafm.getDataAcquisto());

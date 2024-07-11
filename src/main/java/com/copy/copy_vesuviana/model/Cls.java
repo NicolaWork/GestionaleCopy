@@ -1,13 +1,11 @@
 package com.copy.copy_vesuviana.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -25,24 +23,23 @@ public class Cls {
     @Column(name= "modello")
     private String modello;
 
-    @Column(name= "data_acquisto")
-    private LocalDate dataAcquisto;
-
     @Column(name="assistenza")
     private Boolean assistenza;
 
-    @OneToOne @JoinColumn(name = "macchina_id")
+    @OneToOne(mappedBy = "cls")
     private Macchina macchina;
+
+    @ManyToOne
+    private Fornitore fornitore;
     
     public Cls(){}
 
     
 
-    public Cls(Long id, String matricola, String modello, LocalDate dataAcquisto, Boolean assistenza) {
+    public Cls(Long id, String matricola, String modello, Boolean assistenza) {
         this.id = id;
         this.matricola = matricola;
         this.modello = modello;
-        this.dataAcquisto = dataAcquisto;
         this.assistenza = assistenza;
     }
 
@@ -68,14 +65,6 @@ public class Cls {
         this.modello = modello;
     }
 
-    public LocalDate getDataAcquisto() {
-        return dataAcquisto;
-    }
-
-    public void setDataAcquisto(LocalDate dataAcquisto) {
-        this.dataAcquisto = dataAcquisto;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -92,8 +81,7 @@ public class Cls {
 
     @Override
     public String toString() {
-        return "Cls [id=" + id + ", matricola=" + matricola + ", modello=" + modello + ", dataAcquisto=" + dataAcquisto
-                + ", assistenza=" + assistenza + "]";
+        return "Cls [id=" + id + ", matricola=" + matricola + ", modello=" + modello + ", assistenza=" + assistenza + "]";
     }
 
 

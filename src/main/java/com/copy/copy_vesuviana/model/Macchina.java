@@ -34,13 +34,19 @@ public class Macchina {
     private Cliente cliente;
 
     @OneToOne
+    @JoinColumn(name = "bnr_id")
     private Bnr bnr; 
     
     @OneToOne
+    @JoinColumn(name = "cls_id")
     private Cls cls;
 
     @OneToOne
+    @JoinColumn(name = "riciclatore_id")
     private Riciclatore riciclatore;
+
+    @ManyToOne @JoinColumn(name = "fornitore_id")
+    private Fornitore fornitore;
     
     public Macchina(){}
 
