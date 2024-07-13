@@ -127,7 +127,7 @@ public class Macchina {
 
     @Override
     public String toString() {
-        return  "Macchina [ matricola=" + matricola + ", modello=" + modello + " dataAcquisto=" + dataAcquisto + 
+        return  "Macchina [id= "+ id+ ", matricola=" + matricola + ", modello=" + modello + " dataAcquisto=" + dataAcquisto + 
                 "\n " + bnr + 
                 "\n " + cls + 
                 "\n " + riciclatore;

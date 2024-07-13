@@ -29,7 +29,7 @@ public class Cliente {
     @JoinColumn(name="indirizzo_id", referencedColumnName = "id")
     private Indirizzo indirizzo;
 
-    @Column(name="p_iva")
+    @Column(name="p_iva", unique = true)
     private String pIva;
 
     @Column(name="email", unique = true)
@@ -49,7 +49,6 @@ public class Cliente {
     
     public Cliente(){}
 
-    
 
     public Cliente(Long id, String ragione_sociale, Indirizzo indirizzo, String pIva, String email, String telefono,
             Boolean contratto, String alias, Set<Macchina> macchina) {
@@ -63,6 +62,7 @@ public class Cliente {
         this.alias = alias;
         this.macchina = macchina;
     }
+
 
 
 
@@ -98,12 +98,74 @@ public class Cliente {
         this.macchina = macchina;
     }
 
+
+    public String getpIva() {
+        return pIva;
+    }
+
+
+
+    public void setpIva(String pIva) {
+        this.pIva = pIva;
+    }
+
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+
+
+    public Boolean getContratto() {
+        return contratto;
+    }
+
+
+
+    public void setContratto(Boolean contratto) {
+        this.contratto = contratto;
+    }
+
+
+
+    public String getAlias() {
+        return alias;
+    }
+
+
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+
     @Override
     public String toString() {
         return "Cliente [id=" + id + ", ragione_sociale=" + ragione_sociale + ", indirizzo=" + indirizzo + ", pIva="
                 + pIva + ", email=" + email + ", telefono=" + telefono + ", contratto=" + contratto + ", alias=" + alias
                 + ", macchina=" + macchina + "]";
     }
+    
+
     
     
 }

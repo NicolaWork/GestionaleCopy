@@ -11,4 +11,5 @@ import com.copy.copy_vesuviana.model.Bnr;
 public interface BnrRepository extends ListCrudRepository<Bnr,Long> {
 
     List<Bnr> findByMacchinaIdIsNull();
+
 }

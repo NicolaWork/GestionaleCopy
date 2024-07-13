@@ -71,7 +71,7 @@ public class MacchinaController {
         return "schedamacchina";
     }
 
-    @PostMapping("/modifica")
+    @PostMapping("/modifica") //da form di schedamacchina.html
     public String modificaMacchina(@ModelAttribute("macchina") Macchina macchinaForm, HttpSession session) {
     
     Long idMacchina = macchinaForm.getId();
@@ -131,37 +131,34 @@ public class MacchinaController {
         return "macchinaid";
     }
 
-    @PostMapping("/aggiorna")
+    @PostMapping("/aggiorna") //da form di macchinaid.html
     public String aggiornaMacchina(@ModelAttribute("macchina") Macchina macchinafm, HttpSession session, @RequestParam("macchinaId") Long macchinaId) {
         Macchina macchinadb = macchinaService.getMacchinaById(macchinaId);
-        Boolean cambioMacchina = false;
-        
-        if (macchinafm.getId() != macchinaId){
-            macchinafm.setMatricola(macchinafm.getMatricola());
-            macchinafm.setModello(macchinafm.getModello());
-            macchinafm.setDataAcquisto(macchinafm.getDataAcquisto());
 
-            macchinafm.setBnr(macchinadb.getBnr());
-            macchinafm.setCls(macchinadb.getCls());
-            macchinafm.setCliente(macchinadb.getCliente());
-            macchinafm.setRiciclatore(macchinadb.getRiciclatore());
-            cambioMacchina = true;
-        } 
-        
-        System.out.println(macchinafm.getCls().getId());
-        System.out.println(macchinafm.getBnr().getId());
-        System.out.println( macchinafm.getRiciclatore().getId());
-        
-        if (cambioMacchina == true){
+        if (macchinafm.getId() != macchinaId) {
+            Cliente c = macchinadb.getCliente();
+
             macchinadb.setBnr(null);
             macchinadb.setCls(null);
             macchinadb.setCliente(null);
             macchinadb.setRiciclatore(null);
             macchinaService.saveMacchina(macchinadb);
+            
+            Macchina macchinaForm = macchinaService.getMacchinaById(macchinafm.getId());
+            macchinaForm.setBnr(macchinafm.getBnr());
+            macchinaForm.setCliente(c);
+            macchinaForm.setCls(macchinafm.getCls());
+            macchinaForm.setRiciclatore(macchinafm.getRiciclatore());
+            macchinaService.saveMacchina(macchinaForm);
+
+        } else {
+            macchinadb.setBnr(macchinafm.getBnr());
+            macchinadb.setCls(macchinafm.getCls());
+            macchinadb.setRiciclatore(macchinafm.getRiciclatore());
+            macchinaService.saveMacchina(macchinadb);
         }
 
         session.removeAttribute("clientefm");
-        macchinaService.saveMacchina(macchinafm);
 
         return "redirect:/home";
     }
