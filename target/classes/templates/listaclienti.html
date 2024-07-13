@@ -4,34 +4,57 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
     <title>Lista Clienti</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <header th:insert="~{fragments/navbar.html}"></header>
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
             <div class="w-100" style="max-width: 1000px;">
                 <h1 class="text-center">Lista Clienti</h1>
-                <table class="table table-bordered text-center">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Ragione Sociale</th>
-                            <th scope="col">Macchina</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <tr th:each="cliente : ${listaclienti}">
-                            <td th:text="${cliente.id}">#</td>
-                            <td th:text="${cliente.ragione_sociale}">Ragione Sociale</td>
-                            <td th:text="${cliente.macchina}">Macchina</td>
-                            <td>
-                                <a th:href="'/cliente/find/' + ${cliente.id}" class="btn btn-secondary" role="button">Dettagli</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="text-center mt-3">
-                    <a th:href="@{/home}" class="btn btn-outline-secondary" role="button">Home</a>
+
+                <div class="table-responsive">
+                    <table class="table table-hover text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ragione Sociale</th>
+                                <th scope="col">Macchina</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr th:each="cliente : ${listaclienti}">
+                                <td th:text="${cliente.id}">#</td>
+                                <td th:text="${cliente.ragione_sociale}">Ragione Sociale</td>
+                                <td colspan="9">
+                                    <table class="table mb-2">
+                                        <thead>
+                                            <tr>
+                                                <th>Bnr</th>
+                                                <th>Cls</th>
+                                                <th>Riciclatore</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="comp : ${cliente.macchina}">
+                                                <td th:text="${comp.bnr.matricola}">Bnr</td>
+                                                <td th:text="${comp.cls.matricola}">Cls</td>
+                                                <td th:text="${comp.riciclatore.matricola}">Riciclatore</td>
+                                            </tr> 
+                                        </tbody>
+                                    </table>
+                                </td>
+
+                                <td>
+                                    <a th:href="'/cliente/find/' + ${cliente.id}" class="btn btn-secondary" role="button">Dettagli</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center mt-3">
+                        <a th:href="@{/home}" class="btn btn-outline-secondary" role="button">Home</a>
+                    </div>
                 </div>
             </div>
         </div>
