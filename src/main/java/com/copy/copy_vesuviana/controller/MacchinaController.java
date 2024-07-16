@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.copy.copy_vesuviana.model.Bnr;
 import com.copy.copy_vesuviana.model.Cliente;
 import com.copy.copy_vesuviana.model.Cls;
+import com.copy.copy_vesuviana.model.Fornitore;
 import com.copy.copy_vesuviana.model.Macchina;
 import com.copy.copy_vesuviana.model.Riciclatore;
 import com.copy.copy_vesuviana.service.BnrService;
 import com.copy.copy_vesuviana.service.ClsService;
+import com.copy.copy_vesuviana.service.FornitoreService;
 import com.copy.copy_vesuviana.service.MacchinaService;
 import com.copy.copy_vesuviana.service.RiciclatoreService;
 
@@ -40,15 +42,20 @@ public class MacchinaController {
     private BnrService bnrService;
     @Autowired
     private RiciclatoreService riciclatoreService;
+    @Autowired
+    private FornitoreService fornitoreService;
 
     @GetMapping("/new")
     public String newMacchinaForm(Model model) {
         model.addAttribute("macchina", new Macchina());
+        List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
+        model.addAttribute("listafornitori", listafornitori );
         return "newmacchina";  // Questo dovrebbe corrispondere al nome del template
     }
 
     @PostMapping("/form")
     public String postMacchinaForm(@ModelAttribute Macchina macchina) {
+        System.out.println(macchina);
         macchinaService.saveMacchina(macchina);        
         return "redirect:/home";
     }

@@ -52,7 +52,7 @@ public class Macchina {
 
   
 
-    public Macchina(Long id, String matricola, String modello, LocalDate dataAcquisto, Cliente cliente, Bnr bnr, Cls cls, Riciclatore riciclatore) {
+    public Macchina(Long id, String matricola, String modello, LocalDate dataAcquisto, Cliente cliente, Bnr bnr, Cls cls, Riciclatore riciclatore, Fornitore fornitore) {
         this.id = id;
         this.matricola = matricola;
         this.modello = modello;
@@ -61,6 +61,7 @@ public class Macchina {
         this.bnr = bnr;
         this.cls = cls;
         this.riciclatore = riciclatore;
+        this.fornitore = fornitore;
     }
 
 
@@ -130,11 +131,24 @@ public class Macchina {
         return  "Macchina [id= "+ id+ ", matricola=" + matricola + ", modello=" + modello + " dataAcquisto=" + dataAcquisto + 
                 "\n " + bnr + 
                 "\n " + cls + 
-                "\n " + riciclatore;
+                "\n " + riciclatore+
+                "\n " + fornitore;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+
+    public Fornitore getFornitore() {
+        return fornitore;
+    }
+
+
+
+    public void setFornitore(Fornitore fornitore) {
+        this.fornitore = fornitore;
     }
 
     

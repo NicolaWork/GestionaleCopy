@@ -1,10 +1,13 @@
 package com.copy.copy_vesuviana.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,8 +21,9 @@ public class Fornitore {
     @Column(name="ragione_sociale")
     private String ragione_sociale;
 
-    @Column(name="indirizzo")
-    private String indirizzo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="indirizzo_id", referencedColumnName = "id")
+    private Indirizzo indirizzo;
 
     @Column(name="telefono")
     private String telefono;
@@ -29,16 +33,14 @@ public class Fornitore {
 
     public Fornitore () {}
 
-    
 
-    public Fornitore(Long id, String ragione_sociale, String indirizzo, String telefono, String email) {
+    public Fornitore(Long id, String ragione_sociale, Indirizzo indirizzo, String telefono, String email) {
         this.id = id;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo = indirizzo;
         this.telefono = telefono;
         this.email = email;
     }
-
 
 
     public Long getId() {
@@ -55,14 +57,6 @@ public class Fornitore {
 
     public void setRagione_sociale(String ragione_sociale) {
         this.ragione_sociale = ragione_sociale;
-    }
-
-    public String getIndirizzo() {
-        return indirizzo;
-    }
-
-    public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
     }
 
     public String getTelefono() {
@@ -87,6 +81,18 @@ public class Fornitore {
     public String toString() {
         return "Fornitore [id=" + id + ", ragione_sociale=" + ragione_sociale + ", indirizzo=" + indirizzo
                 + ", telefono=" + telefono + ", email=" + email + "]";
+    }
+
+
+
+    public Indirizzo getIndirizzo() {
+        return indirizzo;
+    }
+
+
+
+    public void setIndirizzo(Indirizzo indirizzo) {
+        this.indirizzo = indirizzo;
     }
 
     
