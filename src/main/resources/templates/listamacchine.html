@@ -19,6 +19,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Fornitore</th>
+                                <th scope="col">Cliente</th>
                                 <th scope="col">Matricola</th>
                                 <th scope="col">Modello</th>
                                 <th scope="col">Data Acquisto</th>
@@ -29,6 +30,7 @@
                             <tr th:each="macchina : ${listamacchine}">
                                 <td th:text="${macchina.id}">#</td>
                                 <td th:text="${macchina.fornitore.ragione_sociale}">Fornitore</td>
+                                <td th:text="${macchina.cliente.ragione_sociale}">Cliente</td>
                                 <td th:text="${macchina.matricola}">Matricola</td>
                                 <td th:text="${macchina.modello}">Modello</td>
                                 <td th:text="${#temporals.format(macchina.dataAcquisto, 'dd-MM-yyyy')}">Data Acquisto</td>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Dettagli Fornitore</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header th:insert="~{fragments/navbar.html}"></header>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <div class="w-100" style="max-width: 600px;">
+                <h1 class="text-center">Dettagli Fornitore</h1>
+                <form th:action="@{/fornitore/form}" method="post" th:object="${fornitore}">
+                    <br>
+                    <div>
+                        <input type="hidden" th:field="*{id}">
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="ragione_sociale">Ragione Sociale</span>
+                            <input type="text" id="ragione_sociale" th:field="*{ragione_sociale}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="strada">Strada</span>
+                            <input type="text" id="strada" th:field="*{indirizzo.strada}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="provincia">Provincia</span>
+                            <input type="text" id="provincia" th:field="*{indirizzo.provincia}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="paese">Paese</span>
+                            <input type="text" id="paese" th:field="*{indirizzo.paese}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="cap">C.A.P.</span>
+                            <input type="text" id="cap" th:field="*{indirizzo.cap}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="email">Email</span>
+                            <input type="text" id="email" th:field="*{email}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="telefono">Telefono</span>
+                            <input type="text" id="telefono" th:field="*{telefono}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+          
+                    <!-- Centra i pulsanti -->
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-outline-primary">Salva</button>
+                        <a th:href="@{/fornitore/listafornitori}" class="btn btn-outline-secondary mx-2" role="button">Fornitori</a>
+                        <a th:href="@{/home}" class="btn btn-outline-secondary" role="button">Home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
