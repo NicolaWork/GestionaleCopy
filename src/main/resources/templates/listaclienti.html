@@ -27,24 +27,7 @@
                             <tr th:each="cliente : ${listaclienti}">
                                 <td th:text="${cliente.id}">#</td>
                                 <td th:text="${cliente.ragione_sociale}">Ragione Sociale</td>
-                                <td colspan="9">
-                                    <table class="table mb-2">
-                                        <thead>
-                                            <tr>
-                                                <th>Bnr</th>
-                                                <th>Cls</th>
-                                                <th>Riciclatore</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="comp : ${cliente.macchina}">
-                                                <td th:text="${comp.bnr.matricola}">Bnr</td>
-                                                <td th:text="${comp.cls.matricola}">Cls</td>
-                                                <td th:text="${comp.riciclatore.matricola}">Riciclatore</td>
-                                            </tr> 
-                                        </tbody>
-                                    </table>
-                                </td>
+                                <!-- <td th:text="${cliente.macchina.matricola}">Macchina</td> -->
 
                                 <td>
                                     <a th:href="'/cliente/find/' + ${cliente.id}" class="btn btn-secondary" role="button">Dettagli</a>

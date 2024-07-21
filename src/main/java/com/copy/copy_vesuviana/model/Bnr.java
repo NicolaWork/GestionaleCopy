@@ -34,12 +34,18 @@ public class Bnr {
     
     public Bnr(){}
 
-    public Bnr(Long id, String matricola, String modello, Boolean assistenza) {
+
+
+    public Bnr(Long id, String matricola, String modello, Boolean assistenza, Macchina macchina, Fornitore fornitore) {
         this.id = id;
         this.matricola = matricola;
         this.modello = modello;
         this.assistenza = assistenza;
+        this.macchina = macchina;
+        this.fornitore = fornitore;
     }
+
+
 
     public Long getId() {
         return id;
@@ -84,6 +90,18 @@ public class Bnr {
 
     public void setMacchina(Macchina macchina) {
         this.macchina = macchina;
+    }
+
+    public Boolean getAssistenza() {
+        return assistenza;
+    }
+
+    public Fornitore getFornitore() {
+        return fornitore;
+    }
+
+    public void setFornitore(Fornitore fornitore) {
+        this.fornitore = fornitore;
     }
 
 }

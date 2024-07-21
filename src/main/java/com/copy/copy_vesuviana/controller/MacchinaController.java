@@ -1,5 +1,6 @@
 package com.copy.copy_vesuviana.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class MacchinaController {
         return "redirect:/home";
     }
 
-    @GetMapping("/schedamacchina")
+    @GetMapping("/componimacchina")
     public String allMacchina(Model model){
         model.addAttribute("macchina", new Macchina());
 
@@ -75,7 +76,7 @@ public class MacchinaController {
 
         List<Riciclatore> listariciclatore = riciclatoreService.getBnrByMacchinaNull();
         model.addAttribute("listariciclatore", listariciclatore);
-        return "schedamacchina";
+        return "componimacchina";
     }
 
     @PostMapping("/modifica") //da form di schedamacchina.html
@@ -135,7 +136,7 @@ public class MacchinaController {
         List<Riciclatore> listariciclatore = riciclatoreService.getBnrByMacchinaNull();
         model.addAttribute("listariciclatore", listariciclatore);
 
-        return "macchinaid";
+        return "schedamacchina";
     }
 
     @PostMapping("/aggiorna") //da form di macchinaid.html
@@ -169,4 +170,15 @@ public class MacchinaController {
 
         return "redirect:/home";
     }
+
+    @GetMapping("/listamacchine")
+    public String getListaMacchine(Model model) {
+        List<Macchina> listamacchine = macchinaService.getAllMacchina();
+        listamacchine.sort(Comparator.comparing(Macchina::getId));
+        model.addAttribute("listamacchine", listamacchine);
+        return "listamacchine";
+    }
+    
+
+
 }

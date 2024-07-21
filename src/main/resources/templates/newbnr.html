@@ -16,6 +16,15 @@
                 <h1 class="text-center">Nuovo Bnr</h1>
 
                 <form th:action="@{/bnr/form}" th:object="${bnr}" method="post">
+
+                    <div class="form-group mb-3">                    
+                        <select class="form-select form-select-lg mb-3" id="fornitore" th:field="*{fornitore.id}" aria-label="Seleziona un fornitore">
+                            <option value="-1" selected>Seleziona un fornitore</option>
+                            <th:block th:each="fornitore : ${listafornitori}">
+                                <option th:value="${fornitore.id}" th:text="${fornitore.ragione_sociale}"></option>
+                            </th:block>
+                        </select>
+                    </div>
                     
                     <div class="mb-3">
                         <div class="input-group">

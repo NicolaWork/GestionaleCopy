@@ -23,19 +23,72 @@
                             <input type="text" id="ragione_sociale" th:field="*{ragione_sociale}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <div class="input-group">
-                            <span class="input-group-text" id="indirizzo">Indirizzo</span>
-                            <input type="text" id="indirizzo" th:field="*{indirizzo}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <span class="input-group-text" id="strada">Strada</span>
+                            <input type="text" id="strada" th:field="*{indirizzo.strada}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="provincia">Provincia</span>
+                            <input type="text" id="provincia" th:field="*{indirizzo.provincia}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="paese">Paese</span>
+                            <input type="text" id="paese" th:field="*{indirizzo.paese}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="cap">C.A.P.</span>
+                            <input type="text" id="cap" th:field="*{indirizzo.cap}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="pIva">P.IVA</span>
+                            <input type="text" id="pIva" th:field="*{pIva}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="email">Email</span>
+                            <input type="text" id="email" th:field="*{email}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="telefono">Telefono</span>
+                            <input type="text" id="telefono" th:field="*{telefono}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="alias">Alias</span>
+                            <input type="text" id="alias" th:field="*{alias}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <input type="checkbox" id="contratto" th:checked="*{contratto}">
+                            <span class="input-group-text" id="contratto">Contratto</span>
+                        </div>
+                    </div>
+                    
+
                     <!-- visualizzazione nessuna macchina assegnata -->
                     <div th:if="${#lists.size(cliente.macchina) < 1}">
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text" id="macchina">Macchina</span>
                                 <input type="text" id="macchina" th:field="*{macchina}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
-                                <a th:href="@{/macchina/schedamacchina}" role="button" class="btn btn-secondary">Aggiungi</a>
+                                <a th:href="@{/macchina/componimacchina}" role="button" class="btn btn-secondary">Aggiungi</a>
                             </div>
                         </div>
                     </div>
@@ -43,7 +96,7 @@
                         <ul class="list-group">
                             <li th:each="macchin : *{macchina}" class="list-group-item d-flex flex-column">
                                 <!-- Mostra la matricola della macchina -->
-                                <span th:text="${macchin}"></span>
+                                <span th:text="${macchin.matricola}"></span>
                                 <!-- Pulsante per modificare la singola macchina -->
                                 <div class="d-flex justify-content-end mt-auto">
                                     <a th:href="@{/macchina/find/{id}(id=${macchin.id})}" role="button" class="btn btn-secondary">Modifica</a>

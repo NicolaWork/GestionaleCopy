@@ -35,13 +35,15 @@ public class Riciclatore {
 
     public Riciclatore(){}
     
-    
-    
-    public Riciclatore(Long id, String matricola, String modello, Boolean assistenza) {
+
+    public Riciclatore(Long id, String matricola, String modello, Boolean assistenza, Macchina macchina,
+            Fornitore fornitore) {
         this.id = id;
         this.matricola = matricola;
         this.modello = modello;
         this.assistenza = assistenza;
+        this.macchina = macchina;
+        this.fornitore = fornitore;
     }
 
 
@@ -96,6 +98,21 @@ public class Riciclatore {
 
     public void setMacchina(Macchina macchina) {
         this.macchina = macchina;
+    }
+
+
+    public Boolean getAssistenza() {
+        return assistenza;
+    }
+
+
+    public Fornitore getFornitore() {
+        return fornitore;
+    }
+
+
+    public void setFornitore(Fornitore fornitore) {
+        this.fornitore = fornitore;
     }
 
     

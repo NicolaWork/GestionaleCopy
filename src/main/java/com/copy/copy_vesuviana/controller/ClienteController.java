@@ -2,6 +2,7 @@ package com.copy.copy_vesuviana.controller;
 
 
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,7 @@ public class ClienteController {
     public String allCliente(Model model){
         
         List<Cliente> listaclienti = clienteService.getAllCliente();
+        listaclienti.sort(Comparator.comparing(Cliente::getRagione_sociale));
         model.addAttribute("listaclienti", listaclienti);
  
         return "listaclienti";
