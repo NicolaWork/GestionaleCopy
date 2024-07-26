@@ -33,6 +33,7 @@ public class FornitoreController {
 
     @PostMapping("/form")
     public String postFornitoreForm(@ModelAttribute Fornitore fornitore) {
+        System.out.println(fornitore);
         fornitoreService.saveFornitore(fornitore);        
         return "redirect:/home";
     }

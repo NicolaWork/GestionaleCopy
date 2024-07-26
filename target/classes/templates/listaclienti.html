@@ -19,6 +19,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Ragione Sociale</th>
+                                <th scope="col">Contratto</th>
                                 <th scope="col">Macchina</th>
                                 <th scope="col"></th>
                             </tr>
@@ -27,7 +28,13 @@
                             <tr th:each="cliente : ${listaclienti}">
                                 <td th:text="${cliente.id}">#</td>
                                 <td th:text="${cliente.ragione_sociale}">Ragione Sociale</td>
-                                <!-- <td th:text="${cliente.macchina.matricola}">Macchina</td> -->
+                                <td>
+                                    <input type="checkbox" th:checked="${cliente.contratto}" disabled>
+                                </td>
+                                
+                                <td>                                    
+                                    <ul th:each="macchina : ${cliente.macchina}" th:text="${macchina.matricola}">Matricola</ul>
+                                </td>
 
                                 <td>
                                     <a th:href="'/cliente/find/' + ${cliente.id}" class="btn btn-secondary" role="button">Dettagli</a>

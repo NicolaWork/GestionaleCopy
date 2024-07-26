@@ -18,11 +18,13 @@ import com.copy.copy_vesuviana.model.Fornitore;
 import com.copy.copy_vesuviana.service.BnrService;
 import com.copy.copy_vesuviana.service.FornitoreService;
 
+
 @Controller
 @RequestMapping("/bnr")
 public class BnrController {
 
     private BnrService bnrService;
+
     @Autowired
     FornitoreService fornitoreService;
 
@@ -40,11 +42,13 @@ public class BnrController {
 
     @PostMapping("/form")
     public String postBnrForm(@ModelAttribute Bnr bnr) {
+        Long idFornitore = bnr.getFornitore().getId();
+        bnr.setFornitore(fornitoreService.getFornitoreById(idFornitore));
         bnrService.saveBnr(bnr);        
         return "redirect:/home";
     }
 
-    @PostMapping("/find/{id}")
+    @GetMapping("/find/{id}")
     public String findBnr(@PathVariable(name="id")Long id, Model model){
         Bnr bnr = bnrService.getBnrById(id);
         model.addAttribute("bnr", bnr);

@@ -34,8 +34,7 @@ public class Bnr {
     
     public Bnr(){}
 
-
-
+    
     public Bnr(Long id, String matricola, String modello, Boolean assistenza, Macchina macchina, Fornitore fornitore) {
         this.id = id;
         this.matricola = matricola;
@@ -81,7 +80,7 @@ public class Bnr {
 
     @Override
     public String toString() {
-        return "Bnr [id=" + id + ", matricola=" + matricola + ", modello=" + modello + ", assistenza=" + assistenza + "]";
+        return "Bnr [id=" + id + ", matricola=" + matricola + ", modello=" + modello + ", assistenza=" + assistenza + " fornitore= "+fornitore+" ]";
     }
 
     public Macchina getMacchina() {

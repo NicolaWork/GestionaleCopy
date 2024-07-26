@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.copy.copy_vesuviana.model.Fornitore;
 import com.copy.copy_vesuviana.model.Riciclatore;
@@ -41,6 +40,8 @@ public class RiciclatoreController {
 
     @PostMapping("/form")
     public String postRiciclatoreForm(@ModelAttribute Riciclatore riciclatore) {
+        Long idFornitore = riciclatore.getFornitore().getId();
+        riciclatore.setFornitore(fornitoreService.getFornitoreById(idFornitore));
         riciclatoreService.saveRiciclatore(riciclatore);        
         return "redirect:/home";
     }
@@ -53,10 +54,11 @@ public class RiciclatoreController {
         return "listariciclatori";
     }
 
-    @PostMapping("/find/{id}")
-    @ResponseBody
-    public Riciclatore findRiciclatore(@PathVariable(name="id")Long id){
-        return riciclatoreService.getRiciclatoreById(id);
+    @GetMapping("/find/{id}")    
+    public String findRiciclatore(@PathVariable(name="id")Long id, Model model){
+        Riciclatore riciclatore = riciclatoreService.getRiciclatoreById(id);
+        model.addAttribute("riciclatore", riciclatore);
+        return "schedariciclatore";
     }
 
 

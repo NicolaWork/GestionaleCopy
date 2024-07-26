@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.copy.copy_vesuviana.model.Cls;
 import com.copy.copy_vesuviana.model.Fornitore;
@@ -41,6 +40,8 @@ public class ClsController {
 
     @PostMapping("/form")
     public String postclsForm(@ModelAttribute Cls cls) {
+        Long idFornitore = cls.getFornitore().getId();
+        cls.setFornitore(fornitoreService.getFornitoreById(idFornitore));
         clsService.saveCls(cls);        
         return "redirect:/home";
     }
@@ -53,10 +54,11 @@ public class ClsController {
         return "listacls";
     }
 
-    @PostMapping("/find/{id}")
-    @ResponseBody
-    public Cls findCls(@PathVariable(name="id")Long id){
-        return clsService.getClsById(id);
+    @GetMapping("/find/{id}")
+    public String findCls(@PathVariable(name="id")Long id, Model model){
+        Cls cls = clsService.getClsById(id);
+        model.addAttribute("cls", cls);
+        return "schedacls";
     }
 
 

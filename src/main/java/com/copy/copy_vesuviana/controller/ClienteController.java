@@ -39,6 +39,7 @@ public class ClienteController {
 
     @PostMapping("/form")
     public String postMethodName(@ModelAttribute("cliente") Cliente cliente) {
+        System.out.println(cliente);
         clienteService.saveCliente(cliente);                
         return "redirect:/home";
     }

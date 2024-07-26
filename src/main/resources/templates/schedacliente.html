@@ -16,6 +16,7 @@
                     <br>
                     <div>
                         <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:field="*{indirizzo.id}">
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
@@ -23,7 +24,6 @@
                             <input type="text" id="ragione_sociale" th:field="*{ragione_sociale}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
                     </div>
-
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="strada">Strada</span>
@@ -76,7 +76,7 @@
 
                     <div class="mb-3">
                         <div class="input-group">
-                            <input type="checkbox" id="contratto" th:checked="*{contratto}">
+                            <input type="checkbox" id="contratto" th:field="*{contratto}">
                             <span class="input-group-text" id="contratto">Contratto</span>
                         </div>
                     </div>
