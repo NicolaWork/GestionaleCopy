@@ -27,18 +27,18 @@
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            <tr th:each="riciclaore : ${listariciclatore}">
-                                <td th:text="${riciclaore.id}">#</td>
-                                <td th:text="${riciclaore.fornitore.ragione_sociale}">Fornitore</td>
-                                <td th:text="${riciclaore.matricola}">Matricola</td>
-                                <td th:text="${riciclaore.modello}">Modello</td>
+                            <tr th:each="riciclatore : ${listariciclatore}">
+                                <td th:text="${riciclatore.id}">#</td>
+                                <td th:text="${riciclatore.fornitore.ragione_sociale}">Fornitore</td>
+                                <td th:text="${riciclatore.matricola}">Matricola</td>
+                                <td th:text="${riciclatore.modello}">Modello</td>
                                 <td>
-                                    <input type="checkbox" th:checked="${riciclaore.assistenza}" disabled>
+                                    <input type="checkbox" th:checked="${riciclatore.assistenza}" disabled>
                                 </td>
             
                                 <!-- <td th:text="${bnr.macchina.modello}">Macchina</td> -->
                                 <td>
-                                    <a th:href="'/riciclaore/find/' + ${riciclaore.id}" class="btn btn-secondary" role="button">Dettagli</a>
+                                    <a th:href="'/riciclatore/find/' + ${riciclatore.id}" class="btn btn-secondary" role="button">Dettagli</a>
                                 </td>
                             </tr>
                         </tbody>
