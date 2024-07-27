@@ -35,8 +35,12 @@ public class RiciclatoreService {
         riciclatoreRepository.deleteById(id);
     }
 
-    public List<Riciclatore> getBnrByMacchinaNull(){
+    public List<Riciclatore> getRiciclatoreByMacchinaNull(){
         return riciclatoreRepository.findByMacchinaIdIsNull();
+    }
+
+    public List<Riciclatore> findByMatricola(String matricola) {
+        return riciclatoreRepository.findByMatricolaContainingIgnoreCase(matricola);
     }
 
 }

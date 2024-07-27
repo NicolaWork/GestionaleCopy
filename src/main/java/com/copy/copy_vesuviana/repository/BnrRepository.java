@@ -12,4 +12,6 @@ public interface BnrRepository extends ListCrudRepository<Bnr,Long> {
 
     List<Bnr> findByMacchinaIdIsNull();
 
+    List<Bnr> findByMatricolaContainingIgnoreCase(String matricola);
+
 }

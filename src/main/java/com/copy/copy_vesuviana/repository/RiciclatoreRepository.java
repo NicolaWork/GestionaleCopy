@@ -11,5 +11,7 @@ import com.copy.copy_vesuviana.model.Riciclatore;
 public interface RiciclatoreRepository extends ListCrudRepository<Riciclatore,Long>{
     
     List<Riciclatore> findByMacchinaIdIsNull();
+
+    List<Riciclatore> findByMatricolaContainingIgnoreCase(String matricola);
     
 }

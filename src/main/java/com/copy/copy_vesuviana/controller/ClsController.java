@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.copy.copy_vesuviana.model.Cls;
 import com.copy.copy_vesuviana.model.Fornitore;
@@ -61,5 +62,18 @@ public class ClsController {
         return "schedacls";
     }
 
+    @GetMapping("/search")
+    public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Cls> listacls = clsService.findByMatricola(matricola);
+        model.addAttribute("listacls", listacls);
+        return "listacls :: clsListFragment";
+    }
+
+    @GetMapping
+    public String showBnrList(Model model) {
+        List<Cls> listacls = clsService.getAllCls();
+        model.addAttribute("listacls", listacls);
+        return "listacls";
+    }
 
 }

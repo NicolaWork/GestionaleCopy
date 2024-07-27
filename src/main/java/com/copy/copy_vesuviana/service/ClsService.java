@@ -39,4 +39,8 @@ public class ClsService {
         return clsRepository.findByMacchinaIdIsNull();
     }
 
+    public List<Cls> findByMatricola(String matricola) {
+        return clsRepository.findByMatricolaContainingIgnoreCase(matricola);
+    }
+
 }

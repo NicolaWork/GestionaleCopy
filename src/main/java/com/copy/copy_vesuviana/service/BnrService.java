@@ -38,4 +38,8 @@ public class BnrService {
     public List<Bnr> getBnrByMacchinaNull(){
         return bnrRepository.findByMacchinaIdIsNull();
     }
+
+    public List<Bnr> findByMatricola(String matricola) {
+        return bnrRepository.findByMatricolaContainingIgnoreCase(matricola);
+    }
 }

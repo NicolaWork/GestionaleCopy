@@ -74,7 +74,7 @@ public class MacchinaController {
         List<Bnr> listabnr = bnrService.getBnrByMacchinaNull();
         model.addAttribute("listabnr", listabnr);
 
-        List<Riciclatore> listariciclatore = riciclatoreService.getBnrByMacchinaNull();
+        List<Riciclatore> listariciclatore = riciclatoreService.getRiciclatoreByMacchinaNull();
         model.addAttribute("listariciclatore", listariciclatore);
         return "componimacchina";
     }
@@ -133,7 +133,7 @@ public class MacchinaController {
         List<Bnr> listabnr = bnrService.getBnrByMacchinaNull();
         model.addAttribute("listabnr", listabnr);
 
-        List<Riciclatore> listariciclatore = riciclatoreService.getBnrByMacchinaNull();
+        List<Riciclatore> listariciclatore = riciclatoreService.getRiciclatoreByMacchinaNull();
         model.addAttribute("listariciclatore", listariciclatore);
 
         return "schedamacchina";

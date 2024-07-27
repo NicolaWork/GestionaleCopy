@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.copy.copy_vesuviana.model.Bnr;
 import com.copy.copy_vesuviana.model.Fornitore;
@@ -59,6 +60,20 @@ public class BnrController {
     public String getListaBnr(Model model) {
         List<Bnr> listabnr = bnrService.getAllBnr();
         listabnr.sort(Comparator.comparing(Bnr::getId));
+        model.addAttribute("listabnr", listabnr);
+        return "listabnr";
+    }
+
+    @GetMapping("/search")
+    public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Bnr> listabnr = bnrService.findByMatricola(matricola);
+        model.addAttribute("listabnr", listabnr);
+        return "listabnr :: bnrListFragment";
+    }
+
+    @GetMapping
+    public String showBnrList(Model model) {
+        List<Bnr> listabnr = bnrService.getAllBnr();
         model.addAttribute("listabnr", listabnr);
         return "listabnr";
     }

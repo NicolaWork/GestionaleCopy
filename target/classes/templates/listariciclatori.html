@@ -8,11 +8,19 @@
 </head>
 <body>
     <header th:insert="~{fragments/navbar.html}"></header>
+    
+    <div class="container-fluid">
+        <form class="d-flex" role="search" onsubmit="return false;">
+            <input id="searchInput" class="form-control me-2" type="search" name="matricola" placeholder="Cerca per Matricola" aria-label="Search">
+        </form>
+    </div>
+    
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
             <div class="w-100" style="max-width: 1000px;">
                 <h1 class="text-center">Lista Riciclatori</h1>
-
+                <div id="searchResults">
+                <div th:fragment="riciclatoreListFragment">
                 <div class="table-responsive">
                     <table class="table table-hover text-center">
                         <thead class="thead-dark">
@@ -22,7 +30,6 @@
                                 <th scope="col">Matricola</th>
                                 <th scope="col">Modello</th>
                                 <th scope="col">Assistenza</th>
-                                <!-- <th scope="col">Macchina</th> -->
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -35,8 +42,7 @@
                                 <td>
                                     <input type="checkbox" th:checked="${riciclatore.assistenza}" disabled>
                                 </td>
-            
-                                <!-- <td th:text="${bnr.macchina.modello}">Macchina</td> -->
+                                
                                 <td>
                                     <a th:href="'/riciclatore/find/' + ${riciclatore.id}" class="btn btn-secondary" role="button">Dettagli</a>
                                 </td>
@@ -47,9 +53,28 @@
                         <a th:href="@{/home}" class="btn btn-outline-secondary" role="button">Home</a>
                     </div>
                 </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
+
+            fetch(`/riciclatore/search?matricola=${query}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('searchResults').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+
 </body>
 </html>

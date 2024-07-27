@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.copy.copy_vesuviana.model.Fornitore;
 import com.copy.copy_vesuviana.model.Riciclatore;
@@ -62,6 +63,19 @@ public class RiciclatoreController {
     }
 
 
+    @GetMapping("/search")
+    public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Riciclatore> listariciclatore = riciclatoreService.findByMatricola(matricola);
+        model.addAttribute("listariciclatore", listariciclatore);
+        return "listariciclatori :: riciclatoreListFragment";
+    }
+
+    @GetMapping
+    public String showBnrList(Model model) {
+        List<Riciclatore> listariciclatore = riciclatoreService.getAllRiciclatore();
+        model.addAttribute("listariciclatore", listariciclatore);
+        return "listariciclatori";
+    }
 
 
 }
