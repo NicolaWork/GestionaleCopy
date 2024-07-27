@@ -40,4 +40,8 @@ public class MacchinaService {
         return macchinaRepository.getMacchinaByClienteId(id);
     }
 
+    public List<Macchina> findByMatricola(String matricola) {
+        return macchinaRepository.findByMatricolaContainingIgnoreCase(matricola);
+    }
+
 }

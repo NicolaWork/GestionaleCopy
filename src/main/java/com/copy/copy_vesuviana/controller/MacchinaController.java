@@ -180,5 +180,19 @@ public class MacchinaController {
     }
     
 
+    @GetMapping("/search")
+    public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Macchina> listamacchine = macchinaService.findByMatricola(matricola);
+        model.addAttribute("listamacchine", listamacchine);
+        return "listamacchine :: macchineListFragment";
+    }
+
+    @GetMapping
+    public String showBnrList(Model model) {
+        List<Macchina> listamacchine = macchinaService.getAllMacchina();
+        model.addAttribute("listamacchine", listamacchine);
+        return "listamacchine";
+    }
+
 
 }
