@@ -66,6 +66,7 @@ public class RiciclatoreController {
     @GetMapping("/search")
     public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
         List<Riciclatore> listariciclatore = riciclatoreService.findByMatricola(matricola);
+        listariciclatore.sort(Comparator.comparing(Riciclatore::getId));
         model.addAttribute("listariciclatore", listariciclatore);
         return "listariciclatori :: riciclatoreListFragment";
     }
@@ -73,6 +74,7 @@ public class RiciclatoreController {
     @GetMapping
     public String showBnrList(Model model) {
         List<Riciclatore> listariciclatore = riciclatoreService.getAllRiciclatore();
+        listariciclatore.sort(Comparator.comparing(Riciclatore::getId));
         model.addAttribute("listariciclatore", listariciclatore);
         return "listariciclatori";
     }

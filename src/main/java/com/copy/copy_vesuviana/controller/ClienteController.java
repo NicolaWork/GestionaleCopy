@@ -47,18 +47,15 @@ public class ClienteController {
     
 
     @GetMapping("/listaclienti")
-    public String allCliente(Model model){
-        
+    public String allCliente(Model model){        
         List<Cliente> listaclienti = clienteService.getAllCliente();
         listaclienti.sort(Comparator.comparing(Cliente::getRagioneSociale));
-        model.addAttribute("listaclienti", listaclienti);
- 
+        model.addAttribute("listaclienti", listaclienti); 
         return "listaclienti";
     }
 
     @GetMapping("/find/{id}")
     public String findCliente(@PathVariable(name="id")Long id, Model model, HttpSession session){
-
         Cliente cliente = clienteService.getClienteById(id);
         session.setAttribute("clientefm", cliente);
         model.addAttribute("cliente", cliente);        
@@ -69,6 +66,7 @@ public class ClienteController {
     @GetMapping("/search")
     public String searchClienteByRagioneSociale(@RequestParam("ragioneSociale") String ragioneSociale, Model model) {
         List<Cliente> listaclienti = clienteService.findByRagionesociale(ragioneSociale);
+        listaclienti.sort(Comparator.comparing(Cliente::getRagioneSociale));
         model.addAttribute("listaclienti", listaclienti);
         return "listaclienti :: clienteListFragment";
     }
@@ -76,6 +74,7 @@ public class ClienteController {
     @GetMapping
     public String showClinteList(Model model) {
         List<Cliente> listaclienti = clienteService.getAllCliente();
+        listaclienti.sort(Comparator.comparing(Cliente::getRagioneSociale));
         model.addAttribute("listaclienti", listaclienti);
         return "listaclienti";
     }

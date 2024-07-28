@@ -67,6 +67,7 @@ public class BnrController {
     @GetMapping("/search")
     public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
         List<Bnr> listabnr = bnrService.findByMatricola(matricola);
+        listabnr.sort(Comparator.comparing(Bnr::getId));
         model.addAttribute("listabnr", listabnr);
         return "listabnr :: bnrListFragment";
     }
@@ -74,6 +75,7 @@ public class BnrController {
     @GetMapping
     public String showBnrList(Model model) {
         List<Bnr> listabnr = bnrService.getAllBnr();
+        listabnr.sort(Comparator.comparing(Bnr::getId));
         model.addAttribute("listabnr", listabnr);
         return "listabnr";
     }

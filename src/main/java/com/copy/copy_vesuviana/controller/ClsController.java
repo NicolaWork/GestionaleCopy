@@ -65,6 +65,7 @@ public class ClsController {
     @GetMapping("/search")
     public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
         List<Cls> listacls = clsService.findByMatricola(matricola);
+        listacls.sort(Comparator.comparing(Cls::getId));
         model.addAttribute("listacls", listacls);
         return "listacls :: clsListFragment";
     }
@@ -72,6 +73,7 @@ public class ClsController {
     @GetMapping
     public String showBnrList(Model model) {
         List<Cls> listacls = clsService.getAllCls();
+        listacls.sort(Comparator.comparing(Cls::getId));
         model.addAttribute("listacls", listacls);
         return "listacls";
     }

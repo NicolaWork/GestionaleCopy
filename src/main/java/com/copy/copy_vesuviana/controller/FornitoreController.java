@@ -49,7 +49,6 @@ public class FornitoreController {
 
     @GetMapping("/find/{id}")
     public String findFornitore(@PathVariable(name="id")Long id, Model model){
-
         Fornitore fornitore = fornitoreService.getFornitoreById(id);
         model.addAttribute("fornitore", fornitore);        
 
@@ -59,6 +58,7 @@ public class FornitoreController {
 @GetMapping("/search")
     public String searchFornitoreByRagioneSociale(@RequestParam("ragioneSociale") String ragioneSociale, Model model) {
         List<Fornitore> listafornitori = fornitoreService.findByRagionesociale(ragioneSociale);
+        listafornitori.sort(Comparator.comparing(Fornitore::getId));
         model.addAttribute("listafornitori", listafornitori);
         return "listafornitori :: fornitoreListFragment";
     }
@@ -66,6 +66,7 @@ public class FornitoreController {
     @GetMapping
     public String showClinteList(Model model) {
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
+        listafornitori.sort(Comparator.comparing(Fornitore::getId));
         model.addAttribute("listafornitori", listafornitori);
         return "listafornitori";
     }

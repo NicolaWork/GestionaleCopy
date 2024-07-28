@@ -183,6 +183,7 @@ public class MacchinaController {
     @GetMapping("/search")
     public String searchBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
         List<Macchina> listamacchine = macchinaService.findByMatricola(matricola);
+        listamacchine.sort(Comparator.comparing(Macchina::getId));
         model.addAttribute("listamacchine", listamacchine);
         return "listamacchine :: macchineListFragment";
     }
@@ -190,6 +191,7 @@ public class MacchinaController {
     @GetMapping
     public String showBnrList(Model model) {
         List<Macchina> listamacchine = macchinaService.getAllMacchina();
+        listamacchine.sort(Comparator.comparing(Macchina::getId));
         model.addAttribute("listamacchine", listamacchine);
         return "listamacchine";
     }
