@@ -1,6 +1,9 @@
 package com.copy.copy_vesuviana.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -17,16 +20,15 @@ public class ClienteService {
     }
 
     public void saveCliente(Cliente cliente){
-        System.out.println("-------------------save----------------");
         clienteRepository.save(cliente);
     }
 
-    public void updateCliente(Cliente cliente){
-        System.out.println("-------------------update----------------");
-        cliente.setIndirizzo(cliente.getIndirizzo());
-        cliente.setragioneSociale(cliente.getragioneSociale());
-        clienteRepository.save(cliente);
-    }
+    // public void updateCliente(Cliente cliente){
+    //     System.out.println("-------------------update----------------");
+    //     cliente.setIndirizzo(cliente.getIndirizzo());
+    //     cliente.setRagioneSociale(cliente.getRagioneSociale());
+    //     clienteRepository.save(cliente);
+    // }
 
     public List<Cliente> getAllCliente(){
         return clienteRepository.findAll();
@@ -38,6 +40,17 @@ public class ClienteService {
 
     public void delCliente(Long id){
         clienteRepository.deleteById(id);
+    }
+
+    public List<Cliente> findByRagionesociale(String ragioneSociale) {
+        List<Cliente> list_RS = clienteRepository.findByAliasContainingIgnoreCase(ragioneSociale);
+        List<Cliente> list_A = clienteRepository.findByRagioneSocialeContainingIgnoreCase(ragioneSociale);
+
+        Set<Cliente> unDuplicate = new HashSet<>(list_RS);
+        unDuplicate.addAll(list_A);
+    
+        List<Cliente> lUnica = new ArrayList<>(unDuplicate);
+        return lUnica;
     }
 
 }

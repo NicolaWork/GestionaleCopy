@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.copy.copy_vesuviana.model.Fornitore;
 import com.copy.copy_vesuviana.service.FornitoreService;
@@ -54,6 +55,22 @@ public class FornitoreController {
 
         return "schedafornitore";
     }
+
+@GetMapping("/search")
+    public String searchFornitoreByRagioneSociale(@RequestParam("ragioneSociale") String ragioneSociale, Model model) {
+        List<Fornitore> listafornitori = fornitoreService.findByRagionesociale(ragioneSociale);
+        model.addAttribute("listafornitori", listafornitori);
+        return "listafornitori :: fornitoreListFragment";
+    }
+
+    @GetMapping
+    public String showClinteList(Model model) {
+        List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
+        model.addAttribute("listafornitori", listafornitori);
+        return "listafornitori";
+    }
+
+
 
 
 }

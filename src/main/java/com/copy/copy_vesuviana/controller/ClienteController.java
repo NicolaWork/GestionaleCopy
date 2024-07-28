@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.copy.copy_vesuviana.model.Cliente;
 import com.copy.copy_vesuviana.service.ClienteService;
@@ -49,7 +50,7 @@ public class ClienteController {
     public String allCliente(Model model){
         
         List<Cliente> listaclienti = clienteService.getAllCliente();
-        listaclienti.sort(Comparator.comparing(Cliente::getragioneSociale));
+        listaclienti.sort(Comparator.comparing(Cliente::getRagioneSociale));
         model.addAttribute("listaclienti", listaclienti);
  
         return "listaclienti";
@@ -64,6 +65,21 @@ public class ClienteController {
 
         return "schedacliente";
     }
+
+    @GetMapping("/search")
+    public String searchClienteByRagioneSociale(@RequestParam("ragioneSociale") String ragioneSociale, Model model) {
+        List<Cliente> listaclienti = clienteService.findByRagionesociale(ragioneSociale);
+        model.addAttribute("listaclienti", listaclienti);
+        return "listaclienti :: clienteListFragment";
+    }
+
+    @GetMapping
+    public String showClinteList(Model model) {
+        List<Cliente> listaclienti = clienteService.getAllCliente();
+        model.addAttribute("listaclienti", listaclienti);
+        return "listaclienti";
+    }
+
 
 
 }

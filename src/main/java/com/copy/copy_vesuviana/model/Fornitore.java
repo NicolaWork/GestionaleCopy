@@ -51,11 +51,11 @@ public class Fornitore {
         this.id = id;
     }
 
-    public String getragioneSociale() {
+    public String getRagioneSociale() {
         return ragioneSociale;
     }
 
-    public void setragioneSociale(String ragioneSociale) {
+    public void setRagioneSociale(String ragioneSociale) {
         this.ragioneSociale = ragioneSociale;
     }
 

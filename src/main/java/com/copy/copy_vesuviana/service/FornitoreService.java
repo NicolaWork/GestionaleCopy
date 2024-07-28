@@ -32,7 +32,9 @@ public class FornitoreService {
         fornitoreRepository.deleteById(id);
     }
 
-
+    public List<Fornitore> findByRagionesociale(String ragioneSociale) {
+        return fornitoreRepository.findByRagioneSocialeContainingIgnoreCase(ragioneSociale);
+    }
 
 
     
