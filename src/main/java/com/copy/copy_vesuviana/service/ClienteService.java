@@ -24,7 +24,7 @@ public class ClienteService {
     public void updateCliente(Cliente cliente){
         System.out.println("-------------------update----------------");
         cliente.setIndirizzo(cliente.getIndirizzo());
-        cliente.setRagione_sociale(cliente.getRagione_sociale());
+        cliente.setragioneSociale(cliente.getragioneSociale());
         clienteRepository.save(cliente);
     }
 

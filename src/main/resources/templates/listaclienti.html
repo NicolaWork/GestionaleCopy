@@ -27,7 +27,7 @@
                         <tbody class="table-group-divider">
                             <tr th:each="cliente : ${listaclienti}">
                                 <td th:text="${cliente.id}">#</td>
-                                <td th:text="${cliente.ragione_sociale}">Ragione Sociale</td>
+                                <td th:text="${cliente.ragioneSociale}">Ragione Sociale</td>
                                 <td>
                                     <input type="checkbox" th:checked="${cliente.contratto}" disabled>
                                 </td>

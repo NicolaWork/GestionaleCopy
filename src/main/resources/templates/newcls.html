@@ -18,7 +18,7 @@
                         <select class="form-select form-select-lg mb-3" id="fornitore" th:field="*{fornitore.id}" aria-label="Seleziona un fornitore">
                             <option value="-1" selected>Seleziona un fornitore</option>
                             <th:block th:each="fornitore : ${listafornitori}">
-                                <option th:value="${fornitore.id}" th:text="${fornitore.ragione_sociale}"></option>
+                                <option th:value="${fornitore.id}" th:text="${fornitore.ragioneSociale}"></option>
                             </th:block>
                         </select>
                     </div>

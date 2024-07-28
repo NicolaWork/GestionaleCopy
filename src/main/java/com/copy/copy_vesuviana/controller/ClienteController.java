@@ -49,7 +49,7 @@ public class ClienteController {
     public String allCliente(Model model){
         
         List<Cliente> listaclienti = clienteService.getAllCliente();
-        listaclienti.sort(Comparator.comparing(Cliente::getRagione_sociale));
+        listaclienti.sort(Comparator.comparing(Cliente::getragioneSociale));
         model.addAttribute("listaclienti", listaclienti);
  
         return "listaclienti";

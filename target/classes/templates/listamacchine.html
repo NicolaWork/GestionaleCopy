@@ -37,8 +37,8 @@
                         <tbody class="table-group-divider">
                             <tr th:each="macchina : ${listamacchine}">
                                 <td th:text="${macchina.id}">#</td>
-                                <td th:text="${macchina.fornitore.ragione_sociale}">Fornitore</td>
-                                <td th:text="${macchina.cliente?.ragione_sociale}">Cliente</td>
+                                <td th:text="${macchina.fornitore.ragioneSociale}">Fornitore</td>
+                                <td th:text="${macchina.cliente?.ragioneSociale}">Cliente</td>
                                 <td th:text="${macchina.matricola}">Matricola</td>
                                 <td th:text="${macchina.modello}">Modello</td>
                                 <td th:text="${#temporals.format(macchina.dataAcquisto, 'dd-MM-yyyy')}">Data Acquisto</td>

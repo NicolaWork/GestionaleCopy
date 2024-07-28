@@ -19,7 +19,7 @@ public class Fornitore {
     private Long id;
 
     @Column(name="ragione_sociale")
-    private String ragione_sociale;
+    private String ragioneSociale;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="indirizzo_id", referencedColumnName = "id")
@@ -34,9 +34,9 @@ public class Fornitore {
     public Fornitore () {}
 
 
-    public Fornitore(Long id, String ragione_sociale, Indirizzo indirizzo, String telefono, String email) {
+    public Fornitore(Long id, String ragioneSociale, Indirizzo indirizzo, String telefono, String email) {
         this.id = id;
-        this.ragione_sociale = ragione_sociale;
+        this.ragioneSociale = ragioneSociale;
         this.indirizzo = indirizzo;
         this.telefono = telefono;
         this.email = email;
@@ -51,12 +51,12 @@ public class Fornitore {
         this.id = id;
     }
 
-    public String getRagione_sociale() {
-        return ragione_sociale;
+    public String getragioneSociale() {
+        return ragioneSociale;
     }
 
-    public void setRagione_sociale(String ragione_sociale) {
-        this.ragione_sociale = ragione_sociale;
+    public void setragioneSociale(String ragioneSociale) {
+        this.ragioneSociale = ragioneSociale;
     }
 
     public String getTelefono() {
@@ -79,7 +79,7 @@ public class Fornitore {
 
     @Override
     public String toString() {
-        return "Fornitore [id=" + id + ", ragione_sociale=" + ragione_sociale + ", indirizzo=" + indirizzo
+        return "Fornitore [id=" + id + ", ragioneSociale=" + ragioneSociale + ", indirizzo=" + indirizzo
                 + ", telefono=" + telefono + ", email=" + email + "]";
     }
 
