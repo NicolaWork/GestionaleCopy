@@ -29,7 +29,7 @@ public class FornitoreController {
      @GetMapping("/new")
     public String newMacchinaForm(Model model) {
         model.addAttribute("fornitore", new Fornitore());
-        return "newfornitore";  // Questo dovrebbe corrispondere al nome del template
+        return "new/newfornitore";  // Questo dovrebbe corrispondere al nome del template
     }
 
     @PostMapping("/form")
@@ -44,15 +44,14 @@ public class FornitoreController {
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
         listafornitori.sort(Comparator.comparing(Fornitore::getId));
         model.addAttribute("listafornitori", listafornitori);
-        return "listafornitori";
+        return "lista/listafornitori";
     }
 
     @GetMapping("/find/{id}")
     public String findFornitore(@PathVariable(name="id")Long id, Model model){
         Fornitore fornitore = fornitoreService.getFornitoreById(id);
-        model.addAttribute("fornitore", fornitore);        
-
-        return "schedafornitore";
+        model.addAttribute("fornitore", fornitore);  
+        return "scheda/schedafornitore";
     }
 
 @GetMapping("/search")
@@ -60,7 +59,7 @@ public class FornitoreController {
         List<Fornitore> listafornitori = fornitoreService.findByRagionesociale(ragioneSociale);
         listafornitori.sort(Comparator.comparing(Fornitore::getId));
         model.addAttribute("listafornitori", listafornitori);
-        return "listafornitori :: fornitoreListFragment";
+        return "lista/listafornitori :: fornitoreListFragment";
     }
 
     @GetMapping
@@ -68,7 +67,7 @@ public class FornitoreController {
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
         listafornitori.sort(Comparator.comparing(Fornitore::getId));
         model.addAttribute("listafornitori", listafornitori);
-        return "listafornitori";
+        return "lista/listafornitori";
     }
 
 

@@ -2,6 +2,7 @@ package com.copy.copy_vesuviana.controller;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class ClsController {
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
         model.addAttribute("listafornitori", listafornitori );
         model.addAttribute("cls", new Cls());
-        return "newcls";  // Questo dovrebbe corrispondere al nome del template
+        return "new/newcls";  // Questo dovrebbe corrispondere al nome del template
     }
 
     @PostMapping("/form")
@@ -52,14 +53,14 @@ public class ClsController {
         List<Cls> listacls = clsService.getAllCls();
         listacls.sort(Comparator.comparing(Cls::getId));
         model.addAttribute("listacls", listacls);
-        return "listacls";
+        return "lista/listacls";
     }
 
     @GetMapping("/find/{id}")
     public String findCls(@PathVariable(name="id")Long id, Model model){
         Cls cls = clsService.getClsById(id);
         model.addAttribute("cls", cls);
-        return "schedacls";
+        return "scheda/schedacls";
     }
 
     @GetMapping("/search")
@@ -67,7 +68,7 @@ public class ClsController {
         List<Cls> listacls = clsService.findByMatricola(matricola);
         listacls.sort(Comparator.comparing(Cls::getId));
         model.addAttribute("listacls", listacls);
-        return "listacls :: clsListFragment";
+        return "lista/listacls :: clsListFragment";
     }
 
     @GetMapping
@@ -75,7 +76,28 @@ public class ClsController {
         List<Cls> listacls = clsService.getAllCls();
         listacls.sort(Comparator.comparing(Cls::getId));
         model.addAttribute("listacls", listacls);
-        return "listacls";
+        return "lista/listacls";
+    }
+
+    @GetMapping("/listaclsmagazzino")
+    public String getListaClsMagazzino(Model model){
+        List<Cls> listacls = clsService.getClsByMacchinaNull();
+        listacls.sort(Comparator.comparing(Cls::getId));
+        model.addAttribute("listacls", listacls);
+        return "magazzino/listaclsmagazzino";
+    }
+
+    @GetMapping("/searchmagazzino")
+    public String searchmagazzinoBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Cls> listacls = clsService.findByMatricola(matricola);
+
+        List<Cls> listaclsFiltered = listacls.stream().
+            filter(cls -> cls.getMacchina() == null).
+            collect(Collectors.toList());
+
+        listaclsFiltered.sort(Comparator.comparing(Cls::getId));
+        model.addAttribute("listacls", listaclsFiltered);
+        return "magazzino/listaclsmagazzino :: clsListMagazzinoFragment";
     }
 
 }

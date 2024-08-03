@@ -2,6 +2,7 @@ package com.copy.copy_vesuviana.controller;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class RiciclatoreController {
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
         model.addAttribute("listafornitori", listafornitori );
         model.addAttribute("riciclatore", new Riciclatore());
-        return "newriciclatore";  // Questo dovrebbe corrispondere al nome del template
+        return "new/newriciclatore";  // Questo dovrebbe corrispondere al nome del template
     }
 
     @PostMapping("/form")
@@ -52,14 +53,14 @@ public class RiciclatoreController {
         List<Riciclatore> listariciclatore = riciclatoreService.getAllRiciclatore();
         listariciclatore.sort(Comparator.comparing(Riciclatore::getId));
         model.addAttribute("listariciclatore", listariciclatore);
-        return "listariciclatori";
+        return "lista/listariciclatori";
     }
 
     @GetMapping("/find/{id}")    
     public String findRiciclatore(@PathVariable(name="id")Long id, Model model){
         Riciclatore riciclatore = riciclatoreService.getRiciclatoreById(id);
         model.addAttribute("riciclatore", riciclatore);
-        return "schedariciclatore";
+        return "scheda/schedariciclatore";
     }
 
 
@@ -68,7 +69,7 @@ public class RiciclatoreController {
         List<Riciclatore> listariciclatore = riciclatoreService.findByMatricola(matricola);
         listariciclatore.sort(Comparator.comparing(Riciclatore::getId));
         model.addAttribute("listariciclatore", listariciclatore);
-        return "listariciclatori :: riciclatoreListFragment";
+        return "lista/listariciclatori :: riciclatoreListFragment";
     }
 
     @GetMapping
@@ -76,7 +77,30 @@ public class RiciclatoreController {
         List<Riciclatore> listariciclatore = riciclatoreService.getAllRiciclatore();
         listariciclatore.sort(Comparator.comparing(Riciclatore::getId));
         model.addAttribute("listariciclatore", listariciclatore);
-        return "listariciclatori";
+        return "lista/listariciclatori";
+    }
+
+    @GetMapping("/listariciclatorimagazzino")
+    public String getListaRiciclatoreMagazzino(Model model){
+        List<Riciclatore> listariciclatoremagazzino = riciclatoreService.getRiciclatoreByMacchinaNull();
+        listariciclatoremagazzino.sort(Comparator.comparing(Riciclatore::getId));
+        model.addAttribute("listariciclatore", listariciclatoremagazzino);
+        return "magazzino/listariciclatorimagazzino";
+    }
+
+    @GetMapping("/searchmagazzino")
+    public String searchMagazzinoBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Riciclatore> listariciclatore = riciclatoreService.findByMatricola(matricola);
+
+        List<Riciclatore> listariciclatoreFiltered = listariciclatore.stream()
+            .filter(riciclatore -> riciclatore.getMacchina() == null)
+            .collect(Collectors.toList());
+
+        listariciclatoreFiltered.sort(Comparator.comparing(Riciclatore::getId));
+
+        model.addAttribute("listariciclatore", listariciclatoreFiltered);
+
+        return "magazzino/listariciclatorimagazzino::riciclatoreListMagazzinoFragment";
     }
 
 

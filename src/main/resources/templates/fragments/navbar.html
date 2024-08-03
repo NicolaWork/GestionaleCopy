@@ -42,6 +42,24 @@
                     <li><a class="dropdown-item" th:href="@{/interventi}">Lista Interventi</a></li>                    
                 </ul>
             </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Magazzino</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/macchina/listamacchinemagazzino}">Macchine</a></li>
+                    <li><a class="dropdown-item" th:href="@{/bnr/listabnrmagazzino}">BNR</a></li>
+                    <li><a class="dropdown-item" th:href="@{/cls/listaclsmagazzino}">CLS</a></li>
+                    <li><a class="dropdown-item" th:href="@{/riciclatore/listariciclatorimagazzino}">Riciclatori</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Spostamenti</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/}">Lista Spostamenti</a></li>                    
+                </ul>
+            </li>
+
             </ul>
         </div>
         </div>

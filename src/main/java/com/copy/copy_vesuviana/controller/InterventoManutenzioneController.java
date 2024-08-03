@@ -1,5 +1,8 @@
 package com.copy.copy_vesuviana.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +11,7 @@ import com.copy.copy_vesuviana.model.InterventoManutenzione;
 import com.copy.copy_vesuviana.service.InterventoManutenzioneService;
 import com.copy.copy_vesuviana.service.MacchinaService;
 import com.copy.copy_vesuviana.service.BnrService;
+import com.copy.copy_vesuviana.service.ClienteService;
 import com.copy.copy_vesuviana.service.ClsService;
 import com.copy.copy_vesuviana.service.RiciclatoreService;
 
@@ -30,9 +34,26 @@ public class InterventoManutenzioneController {
     @Autowired
     private RiciclatoreService riciclatoreService;
 
+    @Autowired
+    private ClienteService clienteService;
+
     @GetMapping
-    public String getAllInterventi(Model model) {
-        model.addAttribute("interventi", interventoService.getAllInterventi());
+    public String getAllInterventi(
+            @RequestParam(value = "cliente", required = false) String cliente,
+            @RequestParam(value = "matricola", required = false) String matricola,
+            @RequestParam(value = "startDate", required = false) String startDate,
+            @RequestParam(value = "endDate", required = false) String endDate,
+            Model model) {
+        
+        LocalDate start = (startDate != null && !startDate.isEmpty()) ? LocalDate.parse(startDate) : null;
+        LocalDate end = (endDate != null && !endDate.isEmpty()) ? LocalDate.parse(endDate) : null;
+        
+        List<InterventoManutenzione> interventi = interventoService.searchInterventi(matricola, start, end);
+        model.addAttribute("interventi", interventi);
+        model.addAttribute("matricola", matricola);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        
         return "interventi/list";
     }
 
@@ -43,6 +64,7 @@ public class InterventoManutenzioneController {
         model.addAttribute("bnrs", bnrService.getAllBnr());
         model.addAttribute("clss", clsService.getAllCls());
         model.addAttribute("riciclatori", riciclatoreService.getAllRiciclatore());
+        model.addAttribute("clienti", clienteService.getAllCliente());
         return "interventi/form";
     }
 
@@ -59,6 +81,7 @@ public class InterventoManutenzioneController {
         model.addAttribute("bnrs", bnrService.getAllBnr());
         model.addAttribute("clss", clsService.getAllCls());
         model.addAttribute("riciclatori", riciclatoreService.getAllRiciclatore());
+        model.addAttribute("clienti", clienteService.getAllCliente());
         return "interventi/form";
     }
 

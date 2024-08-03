@@ -3,6 +3,7 @@ package com.copy.copy_vesuviana.controller;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class BnrController {
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
         model.addAttribute("listafornitori", listafornitori );
         model.addAttribute("bnr", new Bnr());
-        return "newbnr";  // Questo dovrebbe corrispondere al nome del template
+        return "new/newbnr";  // Questo dovrebbe corrispondere al nome del template
     }
 
     @PostMapping("/form")
@@ -53,7 +54,7 @@ public class BnrController {
     public String findBnr(@PathVariable(name="id")Long id, Model model){
         Bnr bnr = bnrService.getBnrById(id);
         model.addAttribute("bnr", bnr);
-        return "schedabnr";
+        return "scheda/schedabnr";
     }
 
     @GetMapping("/listabnr")
@@ -61,7 +62,7 @@ public class BnrController {
         List<Bnr> listabnr = bnrService.getAllBnr();
         listabnr.sort(Comparator.comparing(Bnr::getId));
         model.addAttribute("listabnr", listabnr);
-        return "listabnr";
+        return "lista/listabnr";
     }
 
     @GetMapping("/search")
@@ -69,7 +70,7 @@ public class BnrController {
         List<Bnr> listabnr = bnrService.findByMatricola(matricola);
         listabnr.sort(Comparator.comparing(Bnr::getId));
         model.addAttribute("listabnr", listabnr);
-        return "listabnr :: bnrListFragment";
+        return "lista/listabnr :: bnrListFragment";
     }
 
     @GetMapping
@@ -77,7 +78,28 @@ public class BnrController {
         List<Bnr> listabnr = bnrService.getAllBnr();
         listabnr.sort(Comparator.comparing(Bnr::getId));
         model.addAttribute("listabnr", listabnr);
-        return "listabnr";
+        return "lista/listabnr";
+    }
+
+    @GetMapping("/listabnrmagazzino")
+    public String getListaBnrMagazzino(Model model) {
+        List<Bnr> listabnr = bnrService.getBnrByMacchinaNull();
+        listabnr.sort(Comparator.comparing(Bnr::getId));
+        model.addAttribute("listabnr", listabnr);
+        return "magazzino/listabnrmagazzino";
+    }
+
+    @GetMapping("/searchmagazzino")
+    public String searchmagazzinoBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Bnr> listabnr = bnrService.findByMatricola(matricola);
+
+        List<Bnr> listabnrFiltered = listabnr.stream().
+            filter(bnr -> bnr.getMacchina() == null).
+            collect(Collectors.toList());
+
+        listabnrFiltered.sort(Comparator.comparing(Bnr::getId));
+        model.addAttribute("listabnr", listabnrFiltered);
+        return "magazzino/listabnrmagazzino :: bnrListMagazzinoFragment";
     }
 
 }

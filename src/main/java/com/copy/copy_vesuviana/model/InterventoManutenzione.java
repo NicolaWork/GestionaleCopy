@@ -1,7 +1,16 @@
 package com.copy.copy_vesuviana.model;
 
 import java.time.LocalDate;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name = "intervento_manutenzione")
@@ -16,6 +25,10 @@ public class InterventoManutenzione {
 
     @Column(name = "descrizione")
     private String descrizione;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "macchina_id", nullable = true)
@@ -35,9 +48,10 @@ public class InterventoManutenzione {
 
     public InterventoManutenzione() {}
 
-    public InterventoManutenzione(LocalDate dataIntervento, String descrizione, Macchina macchina, Bnr bnr, Cls cls, Riciclatore riciclatore) {
+    public InterventoManutenzione(LocalDate dataIntervento, String descrizione, Cliente cliente, Macchina macchina, Bnr bnr, Cls cls, Riciclatore riciclatore) {
         this.dataIntervento = dataIntervento;
         this.descrizione = descrizione;
+        this.cliente = cliente;
         this.macchina = macchina;
         this.bnr = bnr;
         this.cls = cls;
@@ -106,6 +120,14 @@ public class InterventoManutenzione {
         return "InterventoManutenzione [id=" + id + ", dataIntervento=" + dataIntervento + ", descrizione="
                 + descrizione + ", macchina=" + macchina + ", bnr=" + bnr + ", cls=" + cls + ", riciclatore="
                 + riciclatore + "]";
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     

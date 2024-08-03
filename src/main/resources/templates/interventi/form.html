@@ -4,11 +4,18 @@
     <meta charset="ISO-8859-1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Intervento di Manutenzione</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <header th:insert="~{fragments/navbar.html}"></header>
     <h1 th:text="${intervento.id == null} ? 'Nuovo Intervento' : 'Modifica Intervento'"></h1>
     <form th:action="@{${intervento.id == null} ? '/interventi' : '/interventi/' + ${intervento.id}}" th:object="${intervento}" method="post">
+        <div th:if="${intervento.id == null}">
+            <label for="cliente">Cliente</label>
+            <select id="cliente" th:field="*{cliente}">
+                <option th:each="cliente : ${clienti}" th:value="${cliente.id}" th:text="${cliente.ragioneSociale}"></option>
+            </select>
+        </div>
         <div>
             <label for="dataIntervento">Data</label>
             <input type="date" id="dataIntervento" th:field="*{dataIntervento}" />
@@ -20,25 +27,25 @@
         <div>
             <label for="macchina">Macchina</label>
             <select id="macchina" th:field="*{macchina}">
-                <option th:each="macchina : ${macchine}" th:value="${macchina}" th:text="${macchina.matricola}"></option>
+                <option th:each="macchina : ${macchine}" th:value="${macchina.id}" th:text="${macchina.matricola}"></option>
             </select>
         </div>
         <div>
             <label for="bnr">Bnr</label>
             <select id="bnr" th:field="*{bnr}">
-                <option th:each="bnr : ${bnrs}" th:value="${bnr}" th:text="${bnr.matricola}"></option>
+                <option th:each="bnr : ${bnrs}" th:value="${bnr.id}" th:text="${bnr.matricola}"></option>
             </select>
         </div>
         <div>
             <label for="cls">Cls</label>
             <select id="cls" th:field="*{cls}">
-                <option th:each="cls : ${clss}" th:value="${cls}" th:text="${cls.matricola}"></option>
+                <option th:each="cls : ${clss}" th:value="${cls.id}" th:text="${cls.matricola}"></option>
             </select>
         </div>
         <div>
             <label for="riciclatore">Riciclatore</label>
             <select id="riciclatore" th:field="*{riciclatore}">
-                <option th:each="riciclatore : ${riciclatori}" th:value="${riciclatore}" th:text="${riciclatore.matricola}"></option>
+                <option th:each="riciclatore : ${riciclatori}" th:value="${riciclatore.id}" th:text="${riciclatore.matricola}"></option>
             </select>
         </div>
         <div>

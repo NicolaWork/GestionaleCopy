@@ -29,6 +29,9 @@ public class Macchina {
     @Column(name= "data_acquisto")
     private LocalDate dataAcquisto;
 
+    @Column(name= "data_ultimo_avviso")
+    private LocalDate dataUltimoAvviso;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
@@ -51,12 +54,13 @@ public class Macchina {
     public Macchina(){}
 
   
-
-    public Macchina(Long id, String matricola, String modello, LocalDate dataAcquisto, Cliente cliente, Bnr bnr, Cls cls, Riciclatore riciclatore, Fornitore fornitore) {
+    public Macchina(Long id, String matricola, String modello, LocalDate dataAcquisto, LocalDate dataUltimoAvviso,
+            Cliente cliente, Bnr bnr, Cls cls, Riciclatore riciclatore, Fornitore fornitore) {
         this.id = id;
         this.matricola = matricola;
         this.modello = modello;
         this.dataAcquisto = dataAcquisto;
+        this.dataUltimoAvviso = dataUltimoAvviso;
         this.cliente = cliente;
         this.bnr = bnr;
         this.cls = cls;
@@ -151,5 +155,16 @@ public class Macchina {
         this.fornitore = fornitore;
     }
 
+
+    public LocalDate getDataUltimoAvviso() {
+        return dataUltimoAvviso;
+    }
+
+
+    public void setDataUltimoAvviso(LocalDate dataUltimoAvviso) {
+        this.dataUltimoAvviso = dataUltimoAvviso;
+    }
+
+    
     
 }

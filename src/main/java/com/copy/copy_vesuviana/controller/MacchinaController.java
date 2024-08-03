@@ -2,6 +2,7 @@ package com.copy.copy_vesuviana.controller;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,7 +52,7 @@ public class MacchinaController {
         model.addAttribute("macchina", new Macchina());
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
         model.addAttribute("listafornitori", listafornitori );
-        return "newmacchina";  // Questo dovrebbe corrispondere al nome del template
+        return "new/newmacchina"; 
     }
 
     @PostMapping("/form")
@@ -76,7 +77,7 @@ public class MacchinaController {
 
         List<Riciclatore> listariciclatore = riciclatoreService.getRiciclatoreByMacchinaNull();
         model.addAttribute("listariciclatore", listariciclatore);
-        return "componimacchina";
+        return "new/componimacchina";
     }
 
     @PostMapping("/modifica") //da form di schedamacchina.html
@@ -136,7 +137,7 @@ public class MacchinaController {
         List<Riciclatore> listariciclatore = riciclatoreService.getRiciclatoreByMacchinaNull();
         model.addAttribute("listariciclatore", listariciclatore);
 
-        return "schedamacchina";
+        return "scheda/schedamacchina";
     }
 
     @PostMapping("/aggiorna") //da form di macchinaid.html
@@ -176,7 +177,7 @@ public class MacchinaController {
         List<Macchina> listamacchine = macchinaService.getAllMacchina();
         listamacchine.sort(Comparator.comparing(Macchina::getId));
         model.addAttribute("listamacchine", listamacchine);
-        return "listamacchine";
+        return "lista/listamacchine";
     }
     
 
@@ -185,7 +186,7 @@ public class MacchinaController {
         List<Macchina> listamacchine = macchinaService.findByMatricola(matricola);
         listamacchine.sort(Comparator.comparing(Macchina::getId));
         model.addAttribute("listamacchine", listamacchine);
-        return "listamacchine :: macchineListFragment";
+        return "lista/listamacchine :: macchineListFragment";
     }
 
     @GetMapping
@@ -193,8 +194,26 @@ public class MacchinaController {
         List<Macchina> listamacchine = macchinaService.getAllMacchina();
         listamacchine.sort(Comparator.comparing(Macchina::getId));
         model.addAttribute("listamacchine", listamacchine);
-        return "listamacchine";
+        return "lista/listamacchine";
     }
 
+    @GetMapping("/listamacchinemagazzino")
+    public String getListaMacchineMagazzino(Model model) {
+        List<Macchina> listamacchine = macchinaService.getMacchinaByClienteNull();
+        listamacchine.sort(Comparator.comparing(Macchina::getId));
+        model.addAttribute("listamacchine", listamacchine);
+        return "magazzino/listamacchinemagazzino";
+    }
+
+    @GetMapping("/searchmagazzino")
+    public String searchMagazzinoBnrByMatricola(@RequestParam("matricola") String matricola, Model model) {
+        List<Macchina> listamacchine = macchinaService.findByMatricola(matricola);
+        List<Macchina> listamacchineFiltered = listamacchine.stream().
+            filter(macchina -> macchina.getCliente() == null).
+            collect(Collectors.toList());
+        listamacchineFiltered.sort(Comparator.comparing(Macchina::getId));
+        model.addAttribute("listamacchine", listamacchineFiltered);
+        return "magazzino/listamacchinemagazzino :: macchineListMagazzinoFragment";
+    }
 
 }

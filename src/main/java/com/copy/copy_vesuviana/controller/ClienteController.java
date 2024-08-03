@@ -35,7 +35,7 @@ public class ClienteController {
     @GetMapping("/new")
     public String newClienteForm(Model model) {
         model.addAttribute("cliente", new Cliente());
-        return "newcliente";  // Questo dovrebbe corrispondere al nome del template
+        return "new/newcliente";  // Questo dovrebbe corrispondere al nome del template
     }
 
     @PostMapping("/form")
@@ -51,16 +51,15 @@ public class ClienteController {
         List<Cliente> listaclienti = clienteService.getAllCliente();
         listaclienti.sort(Comparator.comparing(Cliente::getRagioneSociale));
         model.addAttribute("listaclienti", listaclienti); 
-        return "listaclienti";
+        return "lista/listaclienti";
     }
 
     @GetMapping("/find/{id}")
     public String findCliente(@PathVariable(name="id")Long id, Model model, HttpSession session){
         Cliente cliente = clienteService.getClienteById(id);
         session.setAttribute("clientefm", cliente);
-        model.addAttribute("cliente", cliente);        
-
-        return "schedacliente";
+        model.addAttribute("cliente", cliente);
+        return "scheda/schedacliente";
     }
 
     @GetMapping("/search")
@@ -68,7 +67,7 @@ public class ClienteController {
         List<Cliente> listaclienti = clienteService.findByRagionesociale(ragioneSociale);
         listaclienti.sort(Comparator.comparing(Cliente::getRagioneSociale));
         model.addAttribute("listaclienti", listaclienti);
-        return "listaclienti :: clienteListFragment";
+        return "lista/listaclienti :: clienteListFragment";
     }
 
     @GetMapping
@@ -76,7 +75,7 @@ public class ClienteController {
         List<Cliente> listaclienti = clienteService.getAllCliente();
         listaclienti.sort(Comparator.comparing(Cliente::getRagioneSociale));
         model.addAttribute("listaclienti", listaclienti);
-        return "listaclienti";
+        return "lista/listaclienti";
     }
 
 
