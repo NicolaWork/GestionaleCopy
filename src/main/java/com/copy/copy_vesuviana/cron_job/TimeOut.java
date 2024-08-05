@@ -21,6 +21,8 @@ public class TimeOut {
     public void verificaAvvisi() {
         List<Macchina> macchine = macchinaRepository.findAll();
         LocalDate today = LocalDate.now();
+        
+        // TODO: aggiungere filtro per contratto attivo
 
         for (Macchina macchina : macchine) {
             LocalDate dataAcquisto = macchina.getDataAcquisto();
