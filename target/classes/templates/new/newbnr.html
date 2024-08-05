@@ -18,8 +18,8 @@
                 <form th:action="@{/bnr/form}" th:object="${bnr}" method="post">
 
                     <div class="form-group mb-3">                    
-                        <select class="form-select form-select-lg mb-3" id="fornitore" th:field="*{fornitore.id}" aria-label="Seleziona un fornitore">
-                            <option value="-1" selected>Seleziona un fornitore</option>
+                        <select class="form-select form-select-lg mb-3" id="fornitore" th:field="*{fornitore.id}" aria-label="Seleziona un fornitore" required>
+                            <option value="" selected>Seleziona un fornitore</option>
                             <th:block th:each="fornitore : ${listafornitori}">
                                 <option th:value="${fornitore.id}" th:text="${fornitore.ragioneSociale}"></option>
                             </th:block>
@@ -29,14 +29,14 @@
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="matricola">Matricola</span>
-                            <input type="text" id="matricola" th:field="*{matricola}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="matricola" th:field="*{matricola}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="modello">Modello</span>
-                            <input type="text" id="modello" th:field="*{modello}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="modello" th:field="*{modello}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
 

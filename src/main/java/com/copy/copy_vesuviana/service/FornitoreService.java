@@ -17,6 +17,14 @@ public class FornitoreService {
     }
 
     public void saveFornitore(Fornitore fornitore){
+
+        if (fornitoreRepository.existsByRagioneSociale(fornitore.getRagioneSociale())){
+            throw new IllegalArgumentException("Ragione Sociale già esistente");
+        }
+        if (fornitoreRepository.existsByEmail(fornitore.getEmail())){
+            throw new IllegalArgumentException("Email già esistente");
+        }
+
         fornitoreRepository.save(fornitore);
     }
 

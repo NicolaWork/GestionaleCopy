@@ -20,6 +20,16 @@ public class ClienteService {
     }
 
     public void saveCliente(Cliente cliente){
+        
+        if (clienteRepository.existsByRagioneSociale(cliente.getRagioneSociale())){
+            throw new IllegalArgumentException("Ragione Sociale già esistente");
+        }
+        if (clienteRepository.existsByPIva(cliente.getpIva())){
+            throw new IllegalArgumentException("Partita Iva già esistente");
+        }
+        if (clienteRepository.existsByEmail(cliente.getEmail())){
+            throw new IllegalArgumentException("Email già esistente");
+        }
         clienteRepository.save(cliente);
     }
 

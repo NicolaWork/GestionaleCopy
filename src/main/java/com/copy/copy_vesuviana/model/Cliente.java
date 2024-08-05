@@ -22,7 +22,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    @Column(name="ragione_sociale")
+    @Column(name="ragione_sociale", unique = true)
     private String ragioneSociale;
 
     @OneToOne(cascade = CascadeType.ALL)

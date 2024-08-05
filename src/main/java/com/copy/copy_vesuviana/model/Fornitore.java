@@ -18,7 +18,7 @@ public class Fornitore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="ragione_sociale")
+    @Column(name="ragione_sociale", unique = true)
     private String ragioneSociale;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -28,7 +28,7 @@ public class Fornitore {
     @Column(name="telefono")
     private String telefono;
 
-    @Column(name="email")
+    @Column(name="email", unique = true)
     private String email;
 
     public Fornitore () {}

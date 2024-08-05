@@ -29,8 +29,8 @@
                 <form th:action="@{/macchina/modifica}" th:object="${macchina}" method="post">
                     <div class="form-group">
                         <span>MACCHINA: </span>
-                        <select id="macchina" th:field="*{id}" class="form-select form-select-lg" aria-label="Seleziona una macchina">
-                            <option value="-1" selected>Seleziona una macchina</option>
+                        <select id="macchina" th:field="*{id}" class="form-select form-select-lg" aria-label="Seleziona una macchina" required>
+                            <option value="" selected>Seleziona una macchina</option>
                             <th:block th:each="macchina : ${listamacchine}">
                                 <option th:value="${macchina.id}" th:text="${macchina.matricola}"></option>
                             </th:block>
@@ -39,8 +39,8 @@
 
                     <div class="form-group">
                         <span>CLS: </span>
-                        <select id="cls" th:field="*{cls.id}" class="form-select form-select-lg" aria-label="Seleziona un CLS">
-                            <option value="-1" selected>Seleziona un CLS</option>
+                        <select id="cls" th:field="*{cls.id}" class="form-select form-select-lg" aria-label="Seleziona un CLS" required>
+                            <option value="" selected>Seleziona un CLS</option>
                             <th:block th:each="cls : ${listacls}">
                                 <option th:value="${cls.id}" th:text="${cls.matricola}"></option>
                             </th:block>
@@ -49,8 +49,8 @@
                     
                     <div class="form-group">
                         <span>BNR: </span>
-                        <select id="bnr" th:field="*{bnr.id}" class="form-select form-select-lg" aria-label="Seleziona un BNR">
-                            <option value="-1" selected>Seleziona un BNR</option>
+                        <select id="bnr" th:field="*{bnr.id}" class="form-select form-select-lg" aria-label="Seleziona un BNR" required>
+                            <option value="" selected>Seleziona un BNR</option>
                             <th:block th:each="bnr : ${listabnr}">
                                 <option th:value="${bnr.id}" th:text="${bnr.matricola}"></option>
                             </th:block>
@@ -59,8 +59,8 @@
 
                     <div class="form-group">
                         <span>Riciclatore: </span>
-                        <select id="riciclatore" th:field="*{riciclatore.id}" class="form-select form-select-lg" aria-label="Seleziona un Riciclatore">
-                            <option value="-1" selected>Seleziona un Riciclatore</option>
+                        <select id="riciclatore" th:field="*{riciclatore.id}" class="form-select form-select-lg" aria-label="Seleziona un Riciclatore" required>
+                            <option value="" selected>Seleziona un Riciclatore</option>
                             <th:block th:each="riciclatore : ${listariciclatore}">
                                 <option th:value="${riciclatore.id}" th:text="${riciclatore.matricola}"></option>
                             </th:block>

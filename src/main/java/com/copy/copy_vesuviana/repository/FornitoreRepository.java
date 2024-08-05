@@ -13,4 +13,8 @@ public interface FornitoreRepository extends ListCrudRepository<Fornitore,Long> 
 
     List<Fornitore> findByRagioneSocialeContainingIgnoreCase(String ragioneSociale);
     
+    boolean existsByRagioneSociale(String ragioneSociale);
+
+    boolean existsByEmail(String email);
+
 }

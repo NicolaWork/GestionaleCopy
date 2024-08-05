@@ -80,7 +80,7 @@ public class MacchinaController {
         return "new/componimacchina";
     }
 
-    @PostMapping("/modifica") //da form di schedamacchina.html
+    @PostMapping("/modifica") //da form di componimacchina.html
     public String modificaMacchina(@ModelAttribute("macchina") Macchina macchinaForm, HttpSession session) {
     
     Long idMacchina = macchinaForm.getId();
@@ -140,7 +140,7 @@ public class MacchinaController {
         return "scheda/schedamacchina";
     }
 
-    @PostMapping("/aggiorna") //da form di macchinaid.html
+    @PostMapping("/aggiorna") //da form di schedamacchina.html
     public String aggiornaMacchina(@ModelAttribute("macchina") Macchina macchinafm, HttpSession session, @RequestParam("macchinaId") Long macchinaId) {
         Macchina macchinadb = macchinaService.getMacchinaById(macchinaId);
 

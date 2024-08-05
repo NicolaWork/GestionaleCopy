@@ -17,6 +17,10 @@ public class BnrService {
     }
 
     public void saveBnr (Bnr bnr){
+
+        if (bnrRepository.existsByMatricola(bnr.getMatricola())){
+            throw new IllegalArgumentException("Matricola già esistente");
+        }
         if (bnr.isAssistenza()==null) {
             bnr.setAssistenza(false);            
         }

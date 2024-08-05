@@ -13,5 +13,7 @@ public interface RiciclatoreRepository extends ListCrudRepository<Riciclatore,Lo
     List<Riciclatore> findByMacchinaIdIsNull();
 
     List<Riciclatore> findByMatricolaContainingIgnoreCase(String matricola);
+
+    boolean existsByMatricola(String matricola);
     
 }

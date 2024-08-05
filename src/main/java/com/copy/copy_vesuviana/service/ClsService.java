@@ -17,6 +17,9 @@ public class ClsService {
     }
 
     public void saveCls(Cls cls){
+        if (clsRepository.existsByMatricola(cls.getMatricola())){
+            throw new IllegalArgumentException("Matricola già esistente");
+        }
         if (cls.isAssistenza()==null) {
             cls.setAssistenza(false);            
         }

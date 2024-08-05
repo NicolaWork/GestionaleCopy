@@ -17,7 +17,7 @@ public class Cls {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    @Column(name= "matricola")
+    @Column(name= "matricola", unique = true)
     private String matricola;
 
     @Column(name= "modello")

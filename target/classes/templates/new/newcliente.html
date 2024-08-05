@@ -15,49 +15,49 @@
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="ragioneSociale">Ragione Sociale</span>
-                            <input type="text" id="ragioneSociale" th:field="*{ragioneSociale}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="ragioneSociale" th:field="*{ragioneSociale}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="indirizzo.strada">Strada</span>
-                            <input type="text" id="indirizzo.strada" th:field="*{indirizzo.strada}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="indirizzo.strada" th:field="*{indirizzo.strada}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="indirizzo.provincia">Provincia</span>
-                            <input type="text" id="indirizzo.provincia" th:field="*{indirizzo.provincia}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="indirizzo.provincia" th:field="*{indirizzo.provincia}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="indirizzo.paese">Paese</span>
-                            <input type="text" id="indirizzo.paese" th:field="*{indirizzo.paese}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="indirizzo.paese" th:field="*{indirizzo.paese}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="indirizzo.cap">C.A.P.</span>
-                            <input type="text" id="indirizzo.cap" th:field="*{indirizzo.cap}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="indirizzo.cap" th:field="*{indirizzo.cap}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="pIva">P.IVA</span>
-                            <input type="text" id="pIva" th:field="*{pIva}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="pIva" th:field="*{pIva}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="email">Email</span>
-                            <input type="text" id="email" th:field="*{email}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="email" id="email" th:field="*{email}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="telefono">Telefono</span>
-                            <input type="text" id="telefono" th:field="*{telefono}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="tel" id="telefono" th:field="*{telefono}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                     <div class="mb-3">

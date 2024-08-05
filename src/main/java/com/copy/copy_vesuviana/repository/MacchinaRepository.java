@@ -15,4 +15,7 @@ public interface MacchinaRepository extends ListCrudRepository<Macchina,Long> {
     Macchina getMacchinaByClienteId(Long id);
 
     List<Macchina> findByMatricolaContainingIgnoreCase(String matricola);
+
+    boolean existsByMatricola(String matricola);
+    
 }

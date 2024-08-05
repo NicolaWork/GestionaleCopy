@@ -14,4 +14,6 @@ public interface ClsRepository extends ListCrudRepository<Cls,Long>{
 
     List<Cls> findByMatricolaContainingIgnoreCase(String matricola);
 
+    boolean existsByMatricola(String matricola);
+
 }
