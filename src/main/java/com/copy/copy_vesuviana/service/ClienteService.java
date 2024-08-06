@@ -63,4 +63,8 @@ public class ClienteService {
         return lUnica;
     }
 
+    public List<Cliente> getByMacchinaIsNull() {
+        return clienteRepository.findByMacchinaIsNull();
+    }
+
 }

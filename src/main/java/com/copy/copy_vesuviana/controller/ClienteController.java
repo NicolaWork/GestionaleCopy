@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.copy.copy_vesuviana.model.Cliente;
 import com.copy.copy_vesuviana.service.ClienteService;
 
-import jakarta.servlet.http.HttpSession;
-
-
 
 @Controller
 @RequestMapping("/cliente")
@@ -55,9 +52,8 @@ public class ClienteController {
     }
 
     @GetMapping("/find/{id}")
-    public String findCliente(@PathVariable(name="id")Long id, Model model, HttpSession session){
+    public String findCliente(@PathVariable(name="id")Long id, Model model){
         Cliente cliente = clienteService.getClienteById(id);
-        session.setAttribute("clientefm", cliente);
         model.addAttribute("cliente", cliente);
         return "scheda/schedacliente";
     }

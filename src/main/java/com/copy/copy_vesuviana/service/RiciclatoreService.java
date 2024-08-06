@@ -18,7 +18,7 @@ public class RiciclatoreService {
 
     public void saveRiciclatore(Riciclatore riciclatore){
         if (riciclatoreRepository.existsByMatricola(riciclatore.getMatricola())){
-            throw new IllegalArgumentException("Matricola già esistente");
+            throw new IllegalArgumentException("Matricola Riciclatore già esistente");
         }
         if (riciclatore.isAssistenza()==null) {
             riciclatore.setAssistenza(false);            

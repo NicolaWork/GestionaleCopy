@@ -21,12 +21,11 @@ import com.copy.copy_vesuviana.model.Fornitore;
 import com.copy.copy_vesuviana.model.Macchina;
 import com.copy.copy_vesuviana.model.Riciclatore;
 import com.copy.copy_vesuviana.service.BnrService;
+import com.copy.copy_vesuviana.service.ClienteService;
 import com.copy.copy_vesuviana.service.ClsService;
 import com.copy.copy_vesuviana.service.FornitoreService;
 import com.copy.copy_vesuviana.service.MacchinaService;
 import com.copy.copy_vesuviana.service.RiciclatoreService;
-
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/macchina")
@@ -38,6 +37,8 @@ public class MacchinaController {
         this.macchinaService = macchinaService;
     }
 
+    @Autowired
+    private ClienteService clieteService;
     @Autowired
     private ClsService clsService;
     @Autowired
@@ -65,6 +66,9 @@ public class MacchinaController {
     @GetMapping("/componimacchina")
     public String allMacchina(Model model){
         model.addAttribute("macchina", new Macchina());
+        
+        List<Cliente> listacliente = clieteService.getByMacchinaIsNull();
+        model.addAttribute("listacliente", listacliente);
 
         List<Macchina> listamacchine = macchinaService.getMacchinaByClienteNull();
         model.addAttribute("listamacchine", listamacchine);
@@ -81,8 +85,8 @@ public class MacchinaController {
     }
 
     @PostMapping("/modifica") //da form di componimacchina.html
-    public String modificaMacchina(@ModelAttribute("macchina") Macchina macchinaForm, HttpSession session) {
-    
+    public String modificaMacchina(@ModelAttribute("macchina") Macchina macchinaForm) {
+    System.out.println(macchinaForm);
     Long idMacchina = macchinaForm.getId();
     if (idMacchina != null && idMacchina != -1) {
         Macchina macchina = macchinaService.getMacchinaById(idMacchina);
@@ -105,13 +109,12 @@ public class MacchinaController {
         macchina.setRiciclatore(riciclatore);
 
         //setto il cliente
-        Cliente cliente = (Cliente) session.getAttribute("clientefm");
+        Long idCliente = macchinaForm.getCliente().getId();
+        Cliente cliente = clieteService.getClienteById(idCliente);
         macchina.setCliente(cliente);
-        session.removeAttribute("clientefm");
 
-        macchinaService.saveMacchina(macchina);
+        macchinaService.updateMacchina(macchina);
 
-        System.out.println("----------"+macchina);
     } else {
         // Gestione del caso in cui l'ID non sia presente o non sia valido
         System.out.println("ID della macchina non presente o non valido");
@@ -141,7 +144,7 @@ public class MacchinaController {
     }
 
     @PostMapping("/aggiorna") //da form di schedamacchina.html
-    public String aggiornaMacchina(@ModelAttribute("macchina") Macchina macchinafm, HttpSession session, @RequestParam("macchinaId") Long macchinaId) {
+    public String aggiornaMacchina(@ModelAttribute("macchina") Macchina macchinafm, @RequestParam("macchinaId") Long macchinaId) {
         Macchina macchinadb = macchinaService.getMacchinaById(macchinaId);
 
         if (macchinafm.getId() != macchinaId) {
@@ -166,8 +169,6 @@ public class MacchinaController {
             macchinadb.setRiciclatore(macchinafm.getRiciclatore());
             macchinaService.saveMacchina(macchinadb);
         }
-
-        session.removeAttribute("clientefm");
 
         return "redirect:/home";
     }

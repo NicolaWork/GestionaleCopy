@@ -16,9 +16,13 @@ public class MacchinaService {
         this.macchinaRepository = macchinaRepository;
     }
 
+    public void updateMacchina (Macchina macchina){
+        macchinaRepository.save(macchina);
+    }
+
     public void saveMacchina(Macchina macchina){
         if (macchinaRepository.existsByMatricola(macchina.getMatricola())){
-            throw new IllegalArgumentException("Matricola già esistente");
+            throw new IllegalArgumentException("Matricola Macchina già esistente");
         }
         macchinaRepository.save(macchina);
     }

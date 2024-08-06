@@ -14,6 +14,8 @@ public interface ClienteRepository extends ListCrudRepository<Cliente,Long> {
 
     List<Cliente> findByAliasContainingIgnoreCase(String ragioneSociale);
 
+    List<Cliente> findByMacchinaIsNull();
+
     boolean existsByRagioneSociale(String ragioneSociale);
 
     boolean existsByPIva(String pIva);

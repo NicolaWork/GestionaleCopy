@@ -83,7 +83,7 @@
                     
 
                     <!-- visualizzazione nessuna macchina assegnata -->
-                    <div th:if="${#lists.size(cliente.macchina) < 1}">
+                    <!-- <div th:if="${#lists.size(cliente.macchina) < 1}">
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text" id="macchina">Macchina</span>
@@ -91,7 +91,7 @@
                                 <a th:href="@{/macchina/componimacchina}" role="button" class="btn btn-secondary">Aggiungi</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div>
                         <ul class="list-group">
                             <li th:each="macchin : *{macchina}" class="list-group-item d-flex flex-column">
