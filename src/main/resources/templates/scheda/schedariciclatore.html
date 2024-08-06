@@ -21,26 +21,26 @@
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="fornitore">Fornitore</span>
-                            <input type="text" id="fornitore" th:field="*{fornitore.ragioneSociale}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="fornitore" th:field="*{fornitore.ragioneSociale}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly disabled>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="matricola">Matricola</span>
-                            <input type="text" id="matricola" th:field="*{matricola}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="matricola" th:field="*{matricola}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-text" id="modello">Modello</span>
-                            <input type="text" id="modello" th:field="*{modello}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" id="modello" th:field="*{modello}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled >
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="assistenza" th:field="*{assistenza}">
+                            <input type="checkbox" class="form-check-input" id="assistenza" th:field="*{assistenza}" disabled >
                             <label class="form-check-label" for="assistenza">Assistenza</label>
                         </div>
                     </div>                  
@@ -48,13 +48,13 @@
                     <!-- Centra i pulsanti -->
                     <div class="d-flex justify-content-center mt-3">
                         <button type="submit" class="btn btn-outline-primary">Salva</button>
-                        <a th:href="@{/riciclatore/listariciclatori}" class="btn btn-outline-secondary mx-2" role="button">Riciclatori</a>
-                        <a th:href="@{/home}" class="btn btn-outline-secondary" role="button">Home</a>
+                        <button type="button" class="btn btn-outline-secondary mx-2" id="modifica-btn">Modifica</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/js/modificaForm.js"></script>
 </body>
 </html>
