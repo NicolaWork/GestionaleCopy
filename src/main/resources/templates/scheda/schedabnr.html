@@ -15,8 +15,8 @@
                 <form th:action="@{/bnr/form}" method="post" th:object="${bnr}">
                     <br>
                     <div>
-                        <input type="hidden" th:field="*{id}">
-                        <input type="hidden" th:field="*{fornitore.id}">
+                        <input type="hidden" th:field="*{id}" disabled>
+                        <input type="hidden" th:field="*{fornitore.id}" disabled>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">

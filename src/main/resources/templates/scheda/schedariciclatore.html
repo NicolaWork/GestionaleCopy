@@ -15,8 +15,8 @@
                 <form th:action="@{/riciclatore/form}" method="post" th:object="${riciclatore}">
                     <br>
                     <div>
-                        <input type="hidden" th:field="*{id}">
-                        <input type="hidden" th:field="*{fornitore.id}">
+                        <input type="hidden" th:field="*{id}" disabled>
+                        <input type="hidden" th:field="*{fornitore.id}" disabled>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
@@ -46,8 +46,8 @@
                     </div>                  
           
                     <!-- Centra i pulsanti -->
-                    <div class="d-flex justify-content-center mt-3">
-                        <button type="submit" class="btn btn-outline-primary">Salva</button>
+                    <div class="d-flex justify-content-center mt-3" >
+                        <button type="submit" class="btn btn-outline-primary" disabled>Salva</button>
                         <button type="button" class="btn btn-outline-secondary mx-2" id="modifica-btn">Modifica</button>
                     </div>
                 </form>

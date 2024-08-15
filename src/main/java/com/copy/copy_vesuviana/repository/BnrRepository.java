@@ -16,4 +16,5 @@ public interface BnrRepository extends ListCrudRepository<Bnr,Long> {
 
     boolean existsByMatricola(String matricola);
 
+    boolean existsByMatricolaAndIdNot(String matricola, Long id);
 }

@@ -26,6 +26,20 @@ public class ClsService {
         clsRepository.save(cls);
     }
 
+    public void updateCls(Cls clsForm){
+        Cls cls = clsRepository.findById(clsForm.getId()).orElseThrow();
+        if (!clsRepository.existsByMatricolaAndIdNot(clsForm.getMatricola(),clsForm.getId())){
+            cls.setMatricola(clsForm.getMatricola());
+            cls.setModello(clsForm.getModello());
+            cls.setAssistenza(clsForm.getAssistenza());
+            cls.setMacchina(clsForm.getMacchina());
+            cls.setFornitore(clsForm.getFornitore());
+            clsRepository.save(cls);
+        } else{
+            throw new IllegalArgumentException("Matricola Cls già esistente");
+        }
+    }
+
     public List<Cls> getAllCls (){
         return clsRepository.findAll();
     }

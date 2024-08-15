@@ -12,7 +12,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h3 class=" mb-4">Componi Macchina</h3>
+                <h1 class=" mb-3">Componi Macchina</h1>
                 <form th:action="@{/macchina/modifica}" th:object="${macchina}" method="post">
   
                     <div class="form-group">
@@ -65,9 +65,9 @@
                         </select>
                     </div>
 
-                    <div class="text-center">
+                    <div class="text-center mt-3">
                         <button type="submit" class="btn btn-outline-primary">Salva</button>
-                        <button type="reset" class="btn btn-outline-primary">Reset</button>
+                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
                     </div>
                 </div>
             </div>

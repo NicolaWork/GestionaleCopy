@@ -16,4 +16,5 @@ public interface RiciclatoreRepository extends ListCrudRepository<Riciclatore,Lo
 
     boolean existsByMatricola(String matricola);
     
+    boolean existsByMatricolaAndIdNot(String matricola, Long id);
 }

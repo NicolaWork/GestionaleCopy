@@ -22,4 +22,6 @@ public interface ClienteRepository extends ListCrudRepository<Cliente,Long> {
 
     boolean existsByEmail(String email);
 
+
+    //TODO: aggiungere per i campi unici i metodi per update
 }

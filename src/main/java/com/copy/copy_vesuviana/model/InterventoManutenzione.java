@@ -17,8 +17,8 @@ import jakarta.persistence.Table;
 public class InterventoManutenzione {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(name = "data_intervento")
     private LocalDate dataIntervento;
@@ -59,11 +59,11 @@ public class InterventoManutenzione {
     }
 
     // Getters e Setters
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

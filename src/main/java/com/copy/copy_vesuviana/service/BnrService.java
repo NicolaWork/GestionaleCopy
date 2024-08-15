@@ -27,6 +27,20 @@ public class BnrService {
         bnrRepository.save(bnr);
     }
 
+    public void updateBnr(Bnr bnrForm){
+        Bnr bnr = bnrRepository.findById(bnrForm.getId()).orElseThrow();
+        if (!bnrRepository.existsByMatricolaAndIdNot(bnrForm.getMatricola(),bnrForm.getId())){
+            bnr.setMatricola(bnrForm.getMatricola());
+            bnr.setModello(bnrForm.getModello());
+            bnr.setAssistenza(bnrForm.getAssistenza());
+            bnr.setMacchina(bnrForm.getMacchina());
+            bnr.setFornitore(bnrForm.getFornitore());
+            bnrRepository.save(bnr);
+        } else{
+            throw new IllegalArgumentException("Matricola Bnr già esistente");
+        }
+    }
+
     public List<Bnr> getAllBnr (){
         return bnrRepository.findAll();
     }
@@ -46,4 +60,6 @@ public class BnrService {
     public List<Bnr> findByMatricola(String matricola) {
         return bnrRepository.findByMatricolaContainingIgnoreCase(matricola);
     }
+
+
 }

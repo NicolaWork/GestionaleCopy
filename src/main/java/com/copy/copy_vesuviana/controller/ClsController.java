@@ -42,9 +42,7 @@ public class ClsController {
 
     @PostMapping("/form")
     public String postclsForm(@ModelAttribute Cls cls) {
-        Long idFornitore = cls.getFornitore().getId();
-        cls.setFornitore(fornitoreService.getFornitoreById(idFornitore));
-        clsService.saveCls(cls);        
+        clsService.updateCls(cls);        
         return "redirect:/home";
     }
 

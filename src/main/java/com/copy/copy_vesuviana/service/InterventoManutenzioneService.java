@@ -18,7 +18,7 @@ public class InterventoManutenzioneService {
         return interventoManutenzioneRepository.findAll();
     }
 
-    public InterventoManutenzione getInterventoById(Long id) {
+    public InterventoManutenzione getInterventoById(String id) {
         return interventoManutenzioneRepository.findById(id).orElse(null);
     }
 
@@ -26,19 +26,56 @@ public class InterventoManutenzioneService {
         return interventoManutenzioneRepository.save(intervento);
     }
 
-    public void deleteIntervento(Long id) {
+    public void deleteIntervento(String id) {
         interventoManutenzioneRepository.deleteById(id);
     }
 
-    public List<InterventoManutenzione> searchInterventi(String matricola, LocalDate startDate, LocalDate endDate) {
-        if (matricola != null && !matricola.isEmpty() && startDate != null && endDate != null) {
-            return interventoManutenzioneRepository.findByMacchina_MatricolaContainingIgnoreCaseAndDataInterventoBetween(matricola, startDate, endDate);
-        } else if (matricola != null && !matricola.isEmpty()) {
-            return interventoManutenzioneRepository.findByMacchina_MatricolaContainingIgnoreCase(matricola);
-        } else if (startDate != null && endDate != null) {
-            return interventoManutenzioneRepository.findByDataInterventoBetween(startDate, endDate);
-        } else {
-            return interventoManutenzioneRepository.findAll();
+    public List<InterventoManutenzione> searchInterventi(String componente, String matricola, LocalDate startDate, LocalDate endDate) {
+        
+        switch (componente) {
+            case "Bnr":
+                if (matricola != null && !matricola.isEmpty() && startDate != null && endDate != null) {
+                    return interventoManutenzioneRepository.findByBnr_MatricolaContainingIgnoreCaseAndDataInterventoBetween(matricola, startDate, endDate);
+                } else if (matricola != null && !matricola.isEmpty()) {
+                    return interventoManutenzioneRepository.findByBnr_MatricolaContainingIgnoreCase(matricola);
+                }
+            break;
+
+            case "Cls":
+                if (matricola != null && !matricola.isEmpty() && startDate != null && endDate != null) {
+                    return interventoManutenzioneRepository.findByCls_MatricolaContainingIgnoreCaseAndDataInterventoBetween(matricola, startDate, endDate);
+                } else if (matricola != null && !matricola.isEmpty()) {
+                    return interventoManutenzioneRepository.findByCls_MatricolaContainingIgnoreCase(matricola);
+                }            
+            break;
+
+            case "Riciclatore":            
+                if (matricola != null && !matricola.isEmpty() && startDate != null && endDate != null) {
+                    return interventoManutenzioneRepository.findByRiciclatore_MatricolaContainingIgnoreCaseAndDataInterventoBetween(matricola, startDate, endDate);
+                } else if (matricola != null && !matricola.isEmpty()) {
+                    return interventoManutenzioneRepository.findByRiciclatore_MatricolaContainingIgnoreCase(matricola);
+                }            
+            break;
+
+            case "Macchina":
+                if (matricola != null && !matricola.isEmpty() && startDate != null && endDate != null) {
+                    return interventoManutenzioneRepository.findByMacchina_MatricolaContainingIgnoreCaseAndDataInterventoBetween(matricola, startDate, endDate);
+                } else if (matricola != null && !matricola.isEmpty()) {
+                    return interventoManutenzioneRepository.findByMacchina_MatricolaContainingIgnoreCase(matricola);   
+                }         
+            break;
+        
+            case "Cliente":
+                if (matricola != null && !matricola.isEmpty() && startDate != null && endDate != null) {
+                    return interventoManutenzioneRepository.findByCliente_RagioneSocialeContainingIgnoreCaseAndDataInterventoBetween(matricola, startDate, endDate);
+                } else if (matricola != null && !matricola.isEmpty()) {
+                    return interventoManutenzioneRepository.findByCliente_RagioneSocialeContainingIgnoreCase(matricola);   
+                }               
+            break;
+                
         }
+        return interventoManutenzioneRepository.findAll();
+
     }
+
 }

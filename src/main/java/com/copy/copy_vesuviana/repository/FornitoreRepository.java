@@ -17,4 +17,7 @@ public interface FornitoreRepository extends ListCrudRepository<Fornitore,Long> 
 
     boolean existsByEmail(String email);
 
+    
+//TODO: aggiungere per i campi unici i metodi per update    
+
 }

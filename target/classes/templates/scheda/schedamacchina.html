@@ -17,10 +17,10 @@
                 <form th:action="@{/macchina/aggiorna}" th:object="${macchina}" method="post">
 
                     <!-- Campo nascosto per macchina -->
-                    <input type="hidden" id="macchinaId" name="macchinaId" th:value="*{id}">
-                    <input type="hidden" id="macchinaModello" name="macchinaModello" th:value="*{modello}">
-                    <input type="hidden" id="macchinaMatricola" name="macchinaMatricola" th:value="*{matricola}">
-                    <input type="hidden" id="macchinaDataAcquisto" name="macchinaDataAcquisto" th:value="*{dataAcquisto}">
+                    <input type="hidden" id="macchinaId" name="macchinaId" th:value="*{id}" disabled>
+                    <input type="hidden" id="macchinaModello" name="macchinaModello" th:value="*{modello}" disabled>
+                    <input type="hidden" id="macchinaMatricola" name="macchinaMatricola" th:value="*{matricola}" disabled>
+                    <input type="hidden" id="macchinaDataAcquisto" name="macchinaDataAcquisto" th:value="*{dataAcquisto}" disabled>
                     
                     <div class="form-group">
                         <span>MACCHINA: </span>
@@ -62,8 +62,8 @@
                         </select>
                     </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-outline-primary">Salva</button>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-outline-primary" disabled>Salva</button>
                         <button type="button" class="btn btn-outline-secondary mx-2" id="modifica-btn">Modifica</button>
                     </div>
                 </form>

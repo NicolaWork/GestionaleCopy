@@ -26,6 +26,20 @@ public class RiciclatoreService {
         riciclatoreRepository.save(riciclatore);
     }
 
+    public void updateRiciclatore(Riciclatore riciclatoreForm){
+        Riciclatore riciclatore = riciclatoreRepository.findById(riciclatoreForm.getId()).orElseThrow();
+        if (!riciclatoreRepository.existsByMatricolaAndIdNot(riciclatoreForm.getMatricola(),riciclatoreForm.getId())){
+            riciclatore.setMatricola(riciclatoreForm.getMatricola());
+            riciclatore.setModello(riciclatoreForm.getModello());
+            riciclatore.setAssistenza(riciclatoreForm.getAssistenza());
+            riciclatore.setMacchina(riciclatoreForm.getMacchina());
+            riciclatore.setFornitore(riciclatoreForm.getFornitore());
+            riciclatoreRepository.save(riciclatore);
+        } else{
+            throw new IllegalArgumentException("Matricola Riciclatore già esistente");
+        }
+    }
+
     public List<Riciclatore> getAllRiciclatore(){
         return riciclatoreRepository.findAll();
     }

@@ -16,4 +16,6 @@ public interface ClsRepository extends ListCrudRepository<Cls,Long>{
 
     boolean existsByMatricola(String matricola);
 
+    boolean existsByMatricolaAndIdNot(String matricola, Long id);
+
 }

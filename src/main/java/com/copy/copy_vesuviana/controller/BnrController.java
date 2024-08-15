@@ -44,9 +44,7 @@ public class BnrController {
 
     @PostMapping("/form")
     public String postBnrForm(@ModelAttribute Bnr bnr) {
-        Long idFornitore = bnr.getFornitore().getId();
-        bnr.setFornitore(fornitoreService.getFornitoreById(idFornitore));
-        bnrService.saveBnr(bnr);        
+        bnrService.updateBnr(bnr);        
         return "redirect:/home";
     }
 
