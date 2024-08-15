@@ -113,7 +113,7 @@ public class MacchinaController {
         Cliente cliente = clieteService.getClienteById(idCliente);
         macchina.setCliente(cliente);
 
-        macchinaService.updateMacchina(macchina);
+        macchinaService.saveMacchina(macchina);
 
     } else {
         // Gestione del caso in cui l'ID non sia presente o non sia valido
@@ -161,13 +161,13 @@ public class MacchinaController {
             macchinaForm.setCliente(c);
             macchinaForm.setCls(macchinafm.getCls());
             macchinaForm.setRiciclatore(macchinafm.getRiciclatore());
-            macchinaService.saveMacchina(macchinaForm);
+            macchinaService.updateMacchina(macchinaForm);
 
         } else {
             macchinadb.setBnr(macchinafm.getBnr());
             macchinadb.setCls(macchinafm.getCls());
             macchinadb.setRiciclatore(macchinafm.getRiciclatore());
-            macchinaService.saveMacchina(macchinadb);
+            macchinaService.updateMacchina(macchinadb);
         }
 
         return "redirect:/home";

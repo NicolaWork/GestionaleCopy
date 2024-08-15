@@ -27,7 +27,7 @@ public class RiciclatoreService {
     }
 
     public void updateRiciclatore(Riciclatore riciclatoreForm){
-        Riciclatore riciclatore = riciclatoreRepository.findById(riciclatoreForm.getId()).orElseThrow();
+        Riciclatore riciclatore = riciclatoreRepository.findById(riciclatoreForm.getId()).orElseThrow(() -> new IllegalArgumentException("Matricola Riciclatore già esistente"));
         if (!riciclatoreRepository.existsByMatricolaAndIdNot(riciclatoreForm.getMatricola(),riciclatoreForm.getId())){
             riciclatore.setMatricola(riciclatoreForm.getMatricola());
             riciclatore.setModello(riciclatoreForm.getModello());

@@ -42,7 +42,11 @@ public class RiciclatoreController {
 
     @PostMapping("/form")
     public String postRiciclatoreForm(@ModelAttribute Riciclatore riciclatore) {
-        riciclatoreService.updateRiciclatore(riciclatore);        
+        if (riciclatore.getId() == null){
+            riciclatoreService.saveRiciclatore(riciclatore);
+        } else {
+            riciclatoreService.updateRiciclatore(riciclatore);        
+        }       
         return "redirect:/home";
     }
 

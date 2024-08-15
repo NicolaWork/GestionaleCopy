@@ -36,9 +36,13 @@ public class ClienteController {
     }
 
     @PostMapping("/form")
-    public String postMethodName(@ModelAttribute("cliente") Cliente cliente) {
-        System.out.println(cliente);
-        clienteService.saveCliente(cliente);                
+    public String postClienteForm(@ModelAttribute("cliente") Cliente cliente) {
+        if (cliente.getId() == null){
+            clienteService.saveCliente(cliente);
+        } else {
+            clienteService.updateCliente(cliente);        
+        }
+               
         return "redirect:/home";
     }
     

@@ -44,7 +44,11 @@ public class BnrController {
 
     @PostMapping("/form")
     public String postBnrForm(@ModelAttribute Bnr bnr) {
-        bnrService.updateBnr(bnr);        
+        if (bnr.getId() == null){
+            bnrService.saveBnr(bnr);
+        } else {
+            bnrService.updateBnr(bnr);        
+        }
         return "redirect:/home";
     }
 

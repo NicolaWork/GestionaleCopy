@@ -27,7 +27,7 @@ public class ClsService {
     }
 
     public void updateCls(Cls clsForm){
-        Cls cls = clsRepository.findById(clsForm.getId()).orElseThrow();
+        Cls cls = clsRepository.findById(clsForm.getId()).orElseThrow(() -> new IllegalArgumentException("Matricola Cls già esistente"));
         if (!clsRepository.existsByMatricolaAndIdNot(clsForm.getMatricola(),clsForm.getId())){
             cls.setMatricola(clsForm.getMatricola());
             cls.setModello(clsForm.getModello());

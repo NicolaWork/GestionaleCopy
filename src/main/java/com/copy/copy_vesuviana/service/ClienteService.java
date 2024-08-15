@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.copy.copy_vesuviana.model.Cliente;
 import com.copy.copy_vesuviana.repository.ClienteRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ClienteService {
 
@@ -33,12 +35,35 @@ public class ClienteService {
         clienteRepository.save(cliente);
     }
 
-    // public void updateCliente(Cliente cliente){
-    //     System.out.println("-------------------update----------------");
-    //     cliente.setIndirizzo(cliente.getIndirizzo());
-    //     cliente.setRagioneSociale(cliente.getRagioneSociale());
-    //     clienteRepository.save(cliente);
-    // }
+    @Transactional
+    public void updateCliente(Cliente clienteForm) {
+        Cliente cliente = clienteRepository.findById(clienteForm.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Cliente non trovato"));
+
+        if (clienteRepository.existsByRagioneSocialeAndIdNot(clienteForm.getRagioneSociale(), clienteForm.getId())) {
+            throw new IllegalArgumentException("Ragione Sociale già esistente");
+        }
+
+        if (clienteRepository.existsBypIvaAndIdNot(clienteForm.getpIva(), clienteForm.getId())) {
+            throw new IllegalArgumentException("Partita IVA già esistente");
+        }
+
+        if (clienteRepository.existsByEmailAndIdNot(clienteForm.getEmail(), clienteForm.getId())) {
+            throw new IllegalArgumentException("Email già esistente");
+        }
+
+        cliente.setRagioneSociale(clienteForm.getRagioneSociale());
+        cliente.setIndirizzo(clienteForm.getIndirizzo());
+        cliente.setpIva(clienteForm.getpIva());
+        cliente.setEmail(clienteForm.getEmail());
+        cliente.setTelefono(clienteForm.getTelefono());
+        cliente.setContratto(clienteForm.getContratto());
+        cliente.setAlias(clienteForm.getAlias());
+        cliente.setMacchina(clienteForm.getMacchina());
+
+        clienteRepository.save(cliente);
+    }
+
 
     public List<Cliente> getAllCliente(){
         return clienteRepository.findAll();

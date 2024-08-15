@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.copy.copy_vesuviana.model.Fornitore;
 import com.copy.copy_vesuviana.repository.FornitoreRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class FornitoreService {
 
@@ -24,6 +26,27 @@ public class FornitoreService {
         if (fornitoreRepository.existsByEmail(fornitore.getEmail())){
             throw new IllegalArgumentException("Email già esistente");
         }
+
+        fornitoreRepository.save(fornitore);
+    }
+
+    @Transactional
+    public void updateFornitore(Fornitore fornitoreForm) {
+        Fornitore fornitore = fornitoreRepository.findById(fornitoreForm.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Fornitore non trovato"));
+
+        if (fornitoreRepository.existsByRagioneSocialeAndIdNot(fornitoreForm.getRagioneSociale(), fornitoreForm.getId())) {
+            throw new IllegalArgumentException("Ragione Sociale fornotore già esistente");
+        }
+
+        if (fornitoreRepository.existsByEmailAndIdNot(fornitoreForm.getEmail(), fornitoreForm.getId())) {
+            throw new IllegalArgumentException("Email fornitore già esistente");
+        }
+
+        fornitore.setRagioneSociale(fornitoreForm.getRagioneSociale());
+        fornitore.setIndirizzo(fornitoreForm.getIndirizzo());
+        fornitore.setTelefono(fornitoreForm.getTelefono());
+        fornitore.setEmail(fornitoreForm.getEmail());
 
         fornitoreRepository.save(fornitore);
     }

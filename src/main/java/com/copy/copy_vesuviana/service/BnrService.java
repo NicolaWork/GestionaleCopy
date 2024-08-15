@@ -28,7 +28,7 @@ public class BnrService {
     }
 
     public void updateBnr(Bnr bnrForm){
-        Bnr bnr = bnrRepository.findById(bnrForm.getId()).orElseThrow();
+        Bnr bnr = bnrRepository.findById(bnrForm.getId()).orElseThrow(() -> new IllegalArgumentException("Matricola Bnr già esistente"));
         if (!bnrRepository.existsByMatricolaAndIdNot(bnrForm.getMatricola(),bnrForm.getId())){
             bnr.setMatricola(bnrForm.getMatricola());
             bnr.setModello(bnrForm.getModello());

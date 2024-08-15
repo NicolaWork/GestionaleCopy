@@ -41,8 +41,12 @@ public class ClsController {
     }
 
     @PostMapping("/form")
-    public String postclsForm(@ModelAttribute Cls cls) {
-        clsService.updateCls(cls);        
+    public String postClsForm(@ModelAttribute Cls cls) {
+        if (cls.getId() == null){
+            clsService.saveCls(cls);
+        } else {
+            clsService.updateCls(cls);        
+        }      
         return "redirect:/home";
     }
 
