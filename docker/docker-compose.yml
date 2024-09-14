@@ -1,0 +1,10 @@
+services:
+  CopyDB:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=dev
+    ports:
+      - "5427:5427"
+    volumes:
+    - ./postgres-data:/var/lib/postgresql/data
