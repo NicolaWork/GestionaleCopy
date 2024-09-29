@@ -4,7 +4,8 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=copydb
     ports:
-      - "5427:5427"
+      - "5432:5432"
     volumes:
     - ./postgres-data:/var/lib/postgresql/data

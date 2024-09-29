@@ -10,7 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.copy.copy_vesuviana.model.Bnr;
+import com.copy.copy_vesuviana.model.Cliente;
+import com.copy.copy_vesuviana.model.Cls;
 import com.copy.copy_vesuviana.model.InterventoManutenzione;
+import com.copy.copy_vesuviana.model.Macchina;
+import com.copy.copy_vesuviana.model.Riciclatore;
 import com.copy.copy_vesuviana.service.InterventoManutenzioneService;
 import com.copy.copy_vesuviana.service.MacchinaService;
 import com.copy.copy_vesuviana.service.BnrService;
@@ -86,21 +90,65 @@ public class InterventoManutenzioneController {
         return "interventi/newintervento";
     }
     
-    @GetMapping("/search")
-    public String createIntervento(Model model,
-        @RequestParam(value = "matricolaBnr", required = false) String matricolaBnr) {
-    
-    
-            List<Bnr> listabnr = bnrService.findByMatricola(matricolaBnr);
-            listabnr.sort(Comparator.comparing(Bnr::getId));
-            model.addAttribute("listabnr", listabnr);
-            return "interventi/newintervento :: bnrListInterventoFragment";
+
+
   
-         
+    @PostMapping("/searchElement")
+    public String getSearchElement(
+            @RequestParam(value = "cliente", required = false) String cliente,
+            @RequestParam(value = "matricolaBnr", required = false) String matricolaBnr,
+            @RequestParam(value = "matricolaCls", required = false) String matricolaCls,
+            @RequestParam(value = "matricolaRiciclatore", required = false) String matricolaRiciclatore,
+            @RequestParam(value = "matricolaMacchina", required = false) String matricolaMacchina,
+            Model model) {
+        
+        System.out.println("cliente: "+cliente);
+        System.out.println("matricolaBnr: "+matricolaBnr);
+        System.out.println("matricolaCls: "+matricolaCls);
+        System.out.println("matricolaRiciclatore: "+matricolaRiciclatore);
+        System.out.println("matricolaMacchina: "+matricolaMacchina);
+
+        if (cliente != null){
+            List<Cliente> listaCliente = clienteService.findByRagionesociale(cliente);
+            model.addAttribute("listaCliente", listaCliente);
+            System.out.println(listaCliente);
+            
+        }
+        
+        if (matricolaBnr != null){
+            List<Bnr> listaBnr = bnrService.findByMatricola(matricolaBnr);
+            model.addAttribute("listaComponent", listaBnr);
+            System.out.println(listaBnr);
+            
+        }
+
+        if (matricolaCls != null){
+            List<Cls> listaCls = clsService.findByMatricola(matricolaCls);
+            model.addAttribute("listaComponent", listaCls);
+            System.out.println(listaCls);
+            
+        }
+
+        if (matricolaRiciclatore != null){
+            List<Riciclatore> listaRiciclatore = riciclatoreService.findByMatricola(matricolaRiciclatore);
+            model.addAttribute("listaComponent", listaRiciclatore);
+            System.out.println(listaRiciclatore);
+            
+        }
+
+        if (matricolaMacchina != null){
+            List<Macchina> listaMacchina = macchinaService.findByMatricola(matricolaMacchina);
+            model.addAttribute("listaMacchina", listaMacchina);
+            System.out.println(listaMacchina);
+            
+        }
+        System.out.println("--- RICARICO LA PAGINA ---");
+        return "interventi/newintervento";
+    }
 
         
 
-    }
+    
 
 
    // ---------------------------------------------------------------------------   

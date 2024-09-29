@@ -27,7 +27,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Fornitore</th>
-                                <th scope="col">Cliente</th>
+                                <!-- <th scope="col">Cliente</th> -->
                                 <th scope="col">Matricola</th>
                                 <th scope="col">Modello</th>
                                 <th scope="col">Data Acquisto</th>
@@ -38,7 +38,7 @@
                             <tr th:each="macchina : ${listamacchine}">
                                 <td th:text="${macchina.id}">#</td>
                                 <td th:text="${macchina.fornitore.ragioneSociale}">Fornitore</td>
-                                <td th:text="${macchina.cliente?.ragioneSociale}">Cliente</td>
+                                <!-- <td th:text="${macchina.cliente?.ragioneSociale}">Cliente</td> -->
                                 <td th:text="${macchina.matricola}">Matricola</td>
                                 <td th:text="${macchina.modello}">Modello</td>
                                 <td th:text="${#temporals.format(macchina.dataAcquisto, 'dd-MM-yyyy')}">Data Acquisto</td>
@@ -48,9 +48,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-center mt-3">
-                        <a th:href="@{/home}" class="btn btn-outline-secondary" role="button">Home</a>
-                    </div>
+                  
                 </div>
                 </div>
                 </div>

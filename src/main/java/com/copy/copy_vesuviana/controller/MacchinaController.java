@@ -113,7 +113,7 @@ public class MacchinaController {
         Cliente cliente = clieteService.getClienteById(idCliente);
         macchina.setCliente(cliente);
 
-        macchinaService.saveMacchina(macchina);
+        macchinaService.updateMacchina(macchina);
 
     } else {
         // Gestione del caso in cui l'ID non sia presente o non sia valido

@@ -34,7 +34,11 @@ public class FornitoreController {
 
     @PostMapping("/form")
     public String postFornitoreForm(@ModelAttribute Fornitore fornitore) {
-        fornitoreService.updateFornitore(fornitore);        
+        if (fornitore.getId() == null){
+            fornitoreService.saveFornitore(fornitore);
+        } else {
+            fornitoreService.updateFornitore(fornitore);        
+        }       
         return "redirect:/home";
     }
 

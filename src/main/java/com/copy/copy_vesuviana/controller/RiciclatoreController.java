@@ -37,7 +37,7 @@ public class RiciclatoreController {
         List<Fornitore> listafornitori = fornitoreService.getAllFornitore();
         model.addAttribute("listafornitori", listafornitori );
         model.addAttribute("riciclatore", new Riciclatore());
-        return "new/newriciclatore";  // Questo dovrebbe corrispondere al nome del template
+        return "new/newriciclatore"; 
     }
 
     @PostMapping("/form")

@@ -78,8 +78,8 @@ public class ClienteService {
     }
 
     public List<Cliente> findByRagionesociale(String ragioneSociale) {
-        List<Cliente> list_RS = clienteRepository.findByAliasContainingIgnoreCase(ragioneSociale);
-        List<Cliente> list_A = clienteRepository.findByRagioneSocialeContainingIgnoreCase(ragioneSociale);
+        List<Cliente> list_A = clienteRepository.findByAliasContainingIgnoreCase(ragioneSociale);
+        List<Cliente> list_RS = clienteRepository.findByRagioneSocialeContainingIgnoreCase(ragioneSociale);
 
         Set<Cliente> unDuplicate = new HashSet<>(list_RS);
         unDuplicate.addAll(list_A);
