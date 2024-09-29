@@ -1,7 +1,6 @@
 package com.copy.copy_vesuviana.controller;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,21 +64,6 @@ public class InterventoManutenzioneController {
         
         return "interventi/list";
     }
-
-    // @GetMapping("/new")
-    // public String createInterventoForm(Model model) {
-    //     model.addAttribute("intervento", new InterventoManutenzione());
-    //     model.addAttribute("componenti", componenti.values());
-
-
-
-    //     model.addAttribute("macchine", macchinaService.getAllMacchina());
-    //     model.addAttribute("bnrs", bnrService.getAllBnr());
-    //     model.addAttribute("clss", clsService.getAllCls());
-    //     model.addAttribute("riciclatori", riciclatoreService.getAllRiciclatore());
-    //     model.addAttribute("clienti", clienteService.getAllCliente());
-    //     return "interventi/form";
-    // }
 
 
     // ---------------------------------------------------------------------------
